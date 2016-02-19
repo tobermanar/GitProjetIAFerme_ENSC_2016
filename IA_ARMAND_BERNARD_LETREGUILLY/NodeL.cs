@@ -16,23 +16,25 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             {
                 //on cherche à quel point voisin le noeud node correspond
                 lien resultat = pointNode.List_Voisins.Find(voisin => voisin.NomVoisin == node.GetNom()); ;
-                return resultat.Distance;
-                
-                /*if (resultat!=null)
+                if (resultat.Distance != 0)
                 {
-                    return resultat.distance;
+                    return resultat.Distance;
                 }
                 else
                 {
                     string erreur = "ce point n'a pas de voisin correspondant au nom " + node.GetNom();
                     throw new Exception(erreur);
-                }*/
+                }
             }
             else
             {
-                string erreur = "ce point n'a pas de voisin correspondant au nom " + node.GetNom();
+                string erreur = "Il n'y a pas de point correspondant au nom " + node.GetNom();
                 throw new Exception(erreur);
             }
+        }
+        public override void CalculeHCost()
+        {
+            SetEstimation(0);
         }
     }
 }
