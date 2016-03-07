@@ -12,16 +12,16 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         {
         }
 
-        public override bool EndState()
+        public override bool EndState(GenericNode NodeFin)
         {
-            return (this.GetNom() == "12345678?");
+            return (this.GetNom() == NodeFin.GetNom());
         }
 
 
-        public override List<NodeL> GetListSucc()
+        public override List<GenericNode> GetListSucc()
         {
-            List<NodeL> list_succ = new List<NodeL>();
-            List<NodeL> list_Node = new List<NodeL>();
+            List<GenericNode> list_succ = new List<GenericNode>();
+            List<GenericNode> list_Node = new List<GenericNode>();
 
 
             foreach (Point P in Monde.List_Points)
@@ -29,7 +29,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 list_Node.Add(new NodeL(P.NomPoint));
             }
 
-            foreach (NodeL N in list_Node)
+            foreach (GenericNode N in list_Node)
             {
                 if (N.GetNoeud_Parent() == null)
                 {
