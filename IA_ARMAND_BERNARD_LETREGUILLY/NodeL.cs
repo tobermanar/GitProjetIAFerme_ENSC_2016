@@ -17,12 +17,12 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             return (this.GetNom() == "12345678?");
         }
 
-        public override List<NodeL> GetListSucc(Monde M)
+        public override List<NodeL> GetListSucc()
         {
             List<NodeL> list_succ = new List<NodeL>();
             List<NodeL> list_Node = new List<NodeL>();
 
-            foreach (Point P in M.List_Points)
+            foreach (Point P in Monde.List_Points)
             {
                 list_Node.Add(new NodeL(P.NomPoint));
             }

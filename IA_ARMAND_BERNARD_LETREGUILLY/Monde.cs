@@ -8,27 +8,23 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
     class Monde
     {
         private string _nomMonde;
-        private static List<Point> list_Points;
+        public static List<Point> List_Points;
 
         public string NomMonde
         {
             get { return _nomMonde; }
             set { _nomMonde = value; }
         }
-        public List<Point> List_Points
-        {
-            get { return list_Points; }
-        }
         public Monde(string nom, List<Point> points)
         {
             _nomMonde = nom;
-            list_Points = points;
+            List_Points = points;
         }
 
         public List<Point> Impasses()
         {
             List<Point> res = new List<Point>();
-            foreach (Point P in list_Points)
+            foreach (Point P in List_Points)
             {
                 if (P.List_Voisins.Count == 1)
                 {
