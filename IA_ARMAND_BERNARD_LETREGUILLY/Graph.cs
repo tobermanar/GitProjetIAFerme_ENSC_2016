@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace projettaquin
+namespace IA_ARMAND_BERNARD_LETREGUILLY
 {
     class Graph
     {

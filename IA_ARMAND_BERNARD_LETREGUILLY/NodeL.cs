@@ -24,7 +24,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             List<NodeL> list_Node = new List<NodeL>();
 
 
-
             foreach (Point P in Monde.List_Points)
             {
                 list_Node.Add(new NodeL(P.NomPoint));
