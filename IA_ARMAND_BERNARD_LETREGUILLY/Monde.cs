@@ -38,11 +38,17 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         public List<Point> Distance(Point A, Point B)
         {
             List<Point> res = new List<Point>();
+
+            foreach (lien q in A.List_Voisins)
+            {
+
+            }
+
             return res;
         }
 
 
-        public List<Point> Statue()
+  /*      public List<Point> Statue()
         {
             List<Point> res = new List<Point>();
             int statue1 = 8;
@@ -53,90 +59,119 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             List_Points[0].Statue = 1;
             --statue1;
 
-            foreach (Point p in List_Points)
-            {                
-                if (p.Statue == 0)
+            bool test = false;
+
+            do
+            {
+                foreach (Point p in List_Points)
                 {
-                    foreach (lien q in  p.List_Voisins)
+                    if (p.Statue == 0)
                     {
-                        List<int> pot= new List<int>();
-                        for (int i = 0; i < List_Points.Count; i++)
+                        foreach (lien q in p.List_Voisins)
                         {
-                            if (List_Points[i].NomPoint == q.NomVoisin)
+                            List<int> pot = new List<int>();
+                            for (int i = 0; i < List_Points.Count; i++)
                             {
-                                pot.Add(List_Points[i].Statue);
-                            }                            
-
-                            if (pot.Contains(1) || pot.Contains(2) || pot.Contains(3))
-                            {
-                                if (pot.Contains(1) && pot.Contains(2))
+                                if (List_Points[i].NomPoint == q.NomVoisin)
                                 {
-                                    p.Statue = 3;
-                                    statue3--;
+                                    pot.Add(List_Points[i].Statue);
                                 }
 
-                                if (pot.Contains(1) && pot.Contains(3))
+                                if (pot.Contains(1) || pot.Contains(2) || pot.Contains(3))
                                 {
-                                    p.Statue = 2;
-                                    statue2--;
-                                }
-
-                                if (pot.Contains(2) && pot.Contains(3))
-                                {
-                                    p.Statue = 1;
-                                    statue1--;
-                                }
-
-                                if (pot.Contains(1) && !pot.Contains(2) && !pot.Contains(3))
-                                {
-                                    if (statue2 > statue3)
-                                    {
-                                        p.Statue = 2;
-                                        statue2--;
-                                    }
-                                    if (statue2 < statue3)
+                                    if (pot.Contains(1) && pot.Contains(2))
                                     {
                                         p.Statue = 3;
                                         statue3--;
                                     }
-                                }
 
-                                if (pot.Contains(2) && !pot.Contains(1) && !pot.Contains(3))
-                                {
-                                    if (statue1 > statue3)
-                                    {
-                                        p.Statue = 1;
-                                        statue1--;
-                                    }
-                                    if (statue1 < statue3)
-                                    {
-                                        p.Statue = 3;
-                                        statue3--;
-                                    }
-                                }
-
-                                if (pot.Contains(3) && !pot.Contains(1) && !pot.Contains(2))
-                                {
-                                    if (statue1 > statue2)
-                                    {
-                                        p.Statue = 1;
-                                        statue1--;
-                                    }
-                                    if (statue1 < statue2)
+                                    if (pot.Contains(1) && pot.Contains(3))
                                     {
                                         p.Statue = 2;
                                         statue2--;
                                     }
+
+                                    if (pot.Contains(2) && pot.Contains(3))
+                                    {
+                                        p.Statue = 1;
+                                        statue1--;
+                                    }
+
+                                    if (pot.Contains(1) && !pot.Contains(2) && !pot.Contains(3))
+                                    {
+                                        if (statue2 > statue3)
+                                        {
+                                            p.Statue = 2;
+                                            statue2--;
+                                        }
+                                        if (statue2 < statue3)
+                                        {
+                                            p.Statue = 3;
+                                            statue3--;
+                                        }
+                                    }
+
+                                    if (pot.Contains(2) && !pot.Contains(1) && !pot.Contains(3))
+                                    {
+                                        if (statue1 > statue3)
+                                        {
+                                            p.Statue = 1;
+                                            statue1--;
+                                        }
+                                        if (statue1 < statue3)
+                                        {
+                                            p.Statue = 3;
+                                            statue3--;
+                                        }
+                                    }
+
+                                    if (pot.Contains(3) && !pot.Contains(1) && !pot.Contains(2))
+                                    {
+                                        if (statue1 > statue2)
+                                        {
+                                            p.Statue = 1;
+                                            statue1--;
+                                        }
+                                        if (statue1 < statue2)
+                                        {
+                                            p.Statue = 2;
+                                            statue2--;
+                                        }
+                                    }
                                 }
+
                             }
                         }
-                    }
 
+                    }
                 }
-            }
+
+                List<bool> teste = new List<bool>();
+
+                foreach (Point p in List_Points)
+                {
+                    if (p.Statue != 0)
+                    {
+                        teste.Add(true);
+                    }
+                    else
+                    {
+                        teste.Add(false);
+                    }
+                }
+
+                if (teste.Contains(false))
+                {
+                    test = false;
+                }
+                else
+                {
+                    test = true;
+                }
+            } while (test);
 
             return res;
-        }
+        }*/
 
 
     }
