@@ -38,12 +38,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         public List<Point> Distance(Point A, Point B)
         {
             List<Point> res = new List<Point>();
-
-            foreach (lien q in A.List_Voisins)
-            {
-
-            }
-
+            
+           
             return res;
         }
 

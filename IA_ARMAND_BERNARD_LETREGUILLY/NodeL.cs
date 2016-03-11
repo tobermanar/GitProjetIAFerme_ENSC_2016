@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IA_ARMAND_BERNARD_LETREGUILLY
 {
-    class NodeL : GenericNode
+    public class NodeL : GenericNode
     {
         public NodeL(string newname)
             : base(newname)
@@ -14,33 +14,28 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
         public override bool EndState(GenericNode NodeFin)
         {
-            return (this.GetNom() == NodeFin.GetNom());
+            int f = this.Name.Length;
+            return (this.Name[f].ToString() == NodeFin.GetNom());
         }
 
 
         public override List<GenericNode> GetListSucc()
         {
             List<GenericNode> list_succ = new List<GenericNode>();
-            List<GenericNode> list_Node = new List<GenericNode>();
 
+            int f = this.Name.Length;
 
-            foreach (Point P in Monde.List_Points)
+            foreach (Point p in Monde.List_Points)
             {
-                list_Node.Add(new NodeL(P.NomPoint));
-            }
-
-            foreach (GenericNode N in list_Node)
-            {
-                if (N.GetNoeud_Parent() == null)
+                if (this.Name[f].ToString() == p.NomPoint)
                 {
-                    N.SetNoeud_Parent(this);
-                }
-
-                foreach (NodeL K in this.Enfants)
-                {
-                    list_succ.Add(N);
+                    foreach (lien l in p.List_Voisins)
+                    {
+                        list_succ.Add(new NodeL(this.Name + l.ToString()));
+                    }
                 }
             }
+
             return list_succ;
         }
 

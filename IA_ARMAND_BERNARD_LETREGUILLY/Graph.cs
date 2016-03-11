@@ -37,7 +37,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             return null;
         }
 
-        public List<GenericNode> RechercheSolutionAEtoile(GenericNode N0, NodeL NodeFin)
+        public List<GenericNode> RechercheSolutionAEtoile(NodeL N0, NodeL NodeFin)
         {
             L_Ouverts = new List<GenericNode>();
             L_Fermes = new List<GenericNode>();
