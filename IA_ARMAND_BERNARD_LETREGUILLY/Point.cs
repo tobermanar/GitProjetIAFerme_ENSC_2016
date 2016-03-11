@@ -30,10 +30,17 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         private List<lien> _list_Voisins;
         private string _nomPoint;
         private bool _ferme;
+        private int _statue = 0;
         public string NomPoint
         {
             get { return _nomPoint; }
             set { _nomPoint = value; }
+        }
+
+        public int Statue
+        {
+            get { return _statue; }
+            set { _statue = value; }
         }
 
         public string NomVoisin

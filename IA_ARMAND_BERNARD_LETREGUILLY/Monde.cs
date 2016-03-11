@@ -41,5 +41,103 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             return res;
         }
 
+
+        public List<Point> Statue()
+        {
+            List<Point> res = new List<Point>();
+            int statue1 = 8;
+            int statue2 = 8;
+            int statue3 = 7;
+            
+
+            List_Points[0].Statue = 1;
+            --statue1;
+
+            foreach (Point p in List_Points)
+            {                
+                if (p.Statue == 0)
+                {
+                    foreach (lien q in  p.List_Voisins)
+                    {
+                        List<int> pot= new List<int>();
+                        for (int i = 0; i < List_Points.Count; i++)
+                        {
+                            if (List_Points[i].NomPoint == q.NomVoisin)
+                            {
+                                pot.Add(List_Points[i].Statue);
+                            }                            
+
+                            if (pot.Contains(1) || pot.Contains(2) || pot.Contains(3))
+                            {
+                                if (pot.Contains(1) && pot.Contains(2))
+                                {
+                                    p.Statue = 3;
+                                    statue3--;
+                                }
+
+                                if (pot.Contains(1) && pot.Contains(3))
+                                {
+                                    p.Statue = 2;
+                                    statue2--;
+                                }
+
+                                if (pot.Contains(2) && pot.Contains(3))
+                                {
+                                    p.Statue = 1;
+                                    statue1--;
+                                }
+
+                                if (pot.Contains(1) && !pot.Contains(2) && !pot.Contains(3))
+                                {
+                                    if (statue2 > statue3)
+                                    {
+                                        p.Statue = 2;
+                                        statue2--;
+                                    }
+                                    if (statue2 < statue3)
+                                    {
+                                        p.Statue = 3;
+                                        statue3--;
+                                    }
+                                }
+
+                                if (pot.Contains(2) && !pot.Contains(1) && !pot.Contains(3))
+                                {
+                                    if (statue1 > statue3)
+                                    {
+                                        p.Statue = 1;
+                                        statue1--;
+                                    }
+                                    if (statue1 < statue3)
+                                    {
+                                        p.Statue = 3;
+                                        statue3--;
+                                    }
+                                }
+
+                                if (pot.Contains(3) && !pot.Contains(1) && !pot.Contains(2))
+                                {
+                                    if (statue1 > statue2)
+                                    {
+                                        p.Statue = 1;
+                                        statue1--;
+                                    }
+                                    if (statue1 < statue2)
+                                    {
+                                        p.Statue = 2;
+                                        statue2--;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            return res;
+        }
+
+
     }
 }
