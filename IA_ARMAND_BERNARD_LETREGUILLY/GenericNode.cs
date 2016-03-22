@@ -90,7 +90,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
         // Méthodes abstrates, donc à surcharger obligatoirement avec override dans une classe fille
         public abstract double GetArcCost(GenericNode N2);
-        public abstract bool EndState();
+        public abstract bool EndState(GenericNode NodeFin);
         public abstract List<GenericNode> GetListSucc();
         public abstract void CalculeHCost();
     }

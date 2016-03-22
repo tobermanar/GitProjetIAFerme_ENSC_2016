@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace projettaquin
+namespace IA_ARMAND_BERNARD_LETREGUILLY
 {
     class Graph
     {
@@ -37,7 +37,7 @@ namespace projettaquin
             return null;
         }
 
-        public List<GenericNode> RechercheSolutionAEtoile(GenericNode N0)
+        public List<GenericNode> RechercheSolutionAEtoile(NodeL N0, NodeL NodeFin)
         {
             L_Ouverts = new List<GenericNode>();
             L_Fermes = new List<GenericNode>();
@@ -46,7 +46,7 @@ namespace projettaquin
             L_Ouverts.Add(N0);
 
             // tant que le noeud n'est pas terminal et que ouverts n'est pas vide
-            while (L_Ouverts.Count != 0 && N.EndState() == false)
+            while (L_Ouverts.Count != 0 && N.EndState(NodeFin) == false)
             {
                 // Le meilleur noeud des ouverts est supposé placé en tête de liste
                 // On le place dans les fermés

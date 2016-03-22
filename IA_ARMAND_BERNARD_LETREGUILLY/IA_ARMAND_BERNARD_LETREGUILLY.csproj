@@ -53,6 +53,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GenericNode.cs" />
+    <Compile Include="Graph.cs" />
     <Compile Include="Monde.cs" />
     <Compile Include="NodeL.cs" />
     <Compile Include="Point.cs" />

@@ -5,40 +5,37 @@ using System.Text;
 
 namespace IA_ARMAND_BERNARD_LETREGUILLY
 {
-    class NodeL : GenericNode
+    public class NodeL : GenericNode
     {
         public NodeL(string newname)
             : base(newname)
         {
         }
 
-        public override bool EndState()
+        public override bool EndState(GenericNode NodeFin)
         {
-            return (this.GetNom() == "12345678?");
+            int f = this.Name.Length;
+            return (this.Name[f].ToString() == NodeFin.GetNom());
         }
 
-        public override List<NodeL> GetListSucc()
+
+        public override List<GenericNode> GetListSucc()
         {
-            List<NodeL> list_succ = new List<NodeL>();
-            List<NodeL> list_Node = new List<NodeL>();
+            List<GenericNode> list_succ = new List<GenericNode>();
 
-            foreach (Point P in Monde.List_Points)
+            int f = this.Name.Length;
+
+            foreach (Point p in Monde.List_Points)
             {
-                list_Node.Add(new NodeL(P.NomPoint));
-            }
-
-            foreach (NodeL N in list_Node)
-            {
-                if (N.GetNoeud_Parent() == null)
+                if (this.Name[f].ToString() == p.NomPoint)
                 {
-                    N.SetNoeud_Parent(this);
-                }
-
-                foreach (NodeL K in this.Enfants)
-                {
-                    list_succ.Add(N);
+                    foreach (lien l in p.List_Voisins)
+                    {
+                        list_succ.Add(new NodeL(this.Name + l.ToString()));
+                    }
                 }
             }
+
             return list_succ;
         }
 
