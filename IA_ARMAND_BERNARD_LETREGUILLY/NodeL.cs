@@ -29,7 +29,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             {
                 if (this.Name[f].ToString() == p.NomPoint)
                 {
-                    foreach (lien l in p.List_Voisins)
+                    foreach (Lien l in p.List_Voisins)
                     {
                         list_succ.Add(new NodeL(this.Name + l.ToString()));
                     }
@@ -47,7 +47,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             if (pointNode != null)
             {
                 //on cherche à quel point voisin le noeud node correspond
-                lien resultat = pointNode.List_Voisins.Find(voisin => voisin.NomVoisin == node.GetNom()); ;
+                Lien resultat = pointNode.List_Voisins.Find(voisin => voisin.NomVoisin == node.GetNom()); ;
                 if (resultat.Distance != 0)
                 {
                     return resultat.Distance;

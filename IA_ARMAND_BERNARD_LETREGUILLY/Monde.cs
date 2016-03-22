@@ -62,7 +62,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             return res;
         }
 
-        public int Distance(Point A, Point B)
+      /*  public int Distance(Point A, Point B)
         {
             int res =0;
 
@@ -81,7 +81,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 {
                     if (res2[j].GetNom() == p.NomPoint)
                     {
-                        foreach (lien l in p.List_Voisins)
+                        foreach (Lien l in p.List_Voisins)
                         {
                             if (res2[j + 1].GetNom() == l.NomVoisin)
                             {
@@ -93,10 +93,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             }
 
             return 0;
-        }
-
-
-        public List<Point> Statue(List<Point> M)
+        }*/
+        /*public List<Point> Statue(List<Point> M)
         {
             List<Point> res = new List<Point>();
             res = M;
@@ -118,7 +116,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                     foreach (Point p in res)
                     {
 
-                        foreach (lien l in p.List_Voisins)
+                        foreach (Lien l in p.List_Voisins)
                         {
                             Point test = new Point("", null);
                             foreach (Point pt in res)
@@ -169,8 +167,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
             return resu[0];
         }
-     
+     */
 
-
+        
     }
 }

@@ -5,65 +5,64 @@ using System.Text;
 
 namespace IA_ARMAND_BERNARD_LETREGUILLY
 {
-    struct lien
-    {
-        private string _nomVoisin;
-        private int _distance;
-        public string NomVoisin
-        {
-            get { return _nomVoisin;}
-            set{ _nomVoisin = value;}
-        }
-        public int Distance
-        {
-            get { return _distance; }
-            set { _distance = value; }
-        }
-        public lien(string nom, int distance)
-        {
-            _nomVoisin = nom;
-            _distance = distance;
-        }
-    }
     class Point
     {
-        private List<lien> _list_Voisins;
+        private List<Lien> _list_Voisins;
         private string _nomPoint;
         private bool _ferme;
-        private int _statue = 0;
+
+        public override string ToString()
+        {
+            string sentence;
+            string farm;
+            if(_ferme == true)
+            {
+                farm = "Farm  ";
+            }else
+            {
+                farm = "Node ";
+            }
+            sentence = farm + "Nom : " + _nomPoint + "  ";
+            foreach (Lien voisin in _list_Voisins)
+            {
+                sentence += voisin.ToString(); 
+            }
+            return sentence;
+        }
         public string NomPoint
         {
             get { return _nomPoint; }
             set { _nomPoint = value; }
         }
 
-        public int Statue
-        {
-            get { return _statue; }
-            set { _statue = value; }
-        }
-
         public string NomVoisin
         {
             get { return _nomPoint; }
             set { _nomPoint = value; }
         }
-        public List<lien> List_Voisins
+        public List<Lien> List_Voisins
         {
             get { return _list_Voisins; }
             set { _list_Voisins = value; }
         }
-        public Point(string nom, List<lien> voisins)
+       /* public Point(string nom, List<Lien> voisins)
         {
             _nomPoint = nom;
-            _list_Voisins = voisins;
+            this._list_Voisins = new List<Lien>();
+
+            foreach (Lien l in voisins)
+                this._list_Voisins.Add(l);
+
             _ferme = false;
-        }
-        public Point(string nom, List<lien> voisins, bool ferme)
+        }*/
+        public Point(string nom, List<Lien> voisins, bool ferme = false)
         {
-            _nomPoint = nom;
-            _list_Voisins = voisins;
-            _ferme = ferme;
+            this._nomPoint = nom;
+            this._list_Voisins = new List<Lien>();
+            foreach (Lien l in voisins)
+                this._list_Voisins.Add(l);
+
+            this._ferme = ferme;
         }
     }
 }
