@@ -38,136 +38,138 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         public List<Point> Distance(Point A, Point B)
         {
             List<Point> res = new List<Point>();
-            
+
+            Graph g = new Graph();
+
+            NodeL a = new NodeL(A.NomPoint);            
+            NodeL b = new NodeL(B.NomPoint);
+
+            List<GenericNode> res2 = new List<GenericNode>();
+
+            res2 = g.RechercheSolutionAEtoile(a, b);
+
+            foreach (GenericNode n in res2)
+            {
+                foreach (Point p in Monde.List_Points)
+                {
+                    if (n.GetNom() == p.NomPoint)
+                    {
+                        res.Add(p);
+                    }
+                }
+            }
            
             return res;
         }
 
-
-  /*      public List<Point> Statue()
+        public int Distance(Point A, Point B)
         {
-            List<Point> res = new List<Point>();
-            int statue1 = 8;
-            int statue2 = 8;
-            int statue3 = 7;
-            
+            int res =0;
 
-            List_Points[0].Statue = 1;
-            --statue1;
+            Graph g = new Graph();
 
-            bool test = false;
+            NodeL a = new NodeL(A.NomPoint);
+            NodeL b = new NodeL(B.NomPoint);
 
-            do
+            List<GenericNode> res2 = new List<GenericNode>();
+
+            res2 = g.RechercheSolutionAEtoile(a, b);
+
+            for (int j = 0; j < res2.Count-1; j++)
             {
-                foreach (Point p in List_Points)
+                foreach (Point p in Monde.List_Points)
                 {
-                    if (p.Statue == 0)
+                    if (res2[j].GetNom() == p.NomPoint)
                     {
-                        foreach (lien q in p.List_Voisins)
+                        foreach (lien l in p.List_Voisins)
                         {
-                            List<int> pot = new List<int>();
-                            for (int i = 0; i < List_Points.Count; i++)
+                            if (res2[j + 1].GetNom() == l.NomVoisin)
                             {
-                                if (List_Points[i].NomPoint == q.NomVoisin)
-                                {
-                                    pot.Add(List_Points[i].Statue);
-                                }
-
-                                if (pot.Contains(1) || pot.Contains(2) || pot.Contains(3))
-                                {
-                                    if (pot.Contains(1) && pot.Contains(2))
-                                    {
-                                        p.Statue = 3;
-                                        statue3--;
-                                    }
-
-                                    if (pot.Contains(1) && pot.Contains(3))
-                                    {
-                                        p.Statue = 2;
-                                        statue2--;
-                                    }
-
-                                    if (pot.Contains(2) && pot.Contains(3))
-                                    {
-                                        p.Statue = 1;
-                                        statue1--;
-                                    }
-
-                                    if (pot.Contains(1) && !pot.Contains(2) && !pot.Contains(3))
-                                    {
-                                        if (statue2 > statue3)
-                                        {
-                                            p.Statue = 2;
-                                            statue2--;
-                                        }
-                                        if (statue2 < statue3)
-                                        {
-                                            p.Statue = 3;
-                                            statue3--;
-                                        }
-                                    }
-
-                                    if (pot.Contains(2) && !pot.Contains(1) && !pot.Contains(3))
-                                    {
-                                        if (statue1 > statue3)
-                                        {
-                                            p.Statue = 1;
-                                            statue1--;
-                                        }
-                                        if (statue1 < statue3)
-                                        {
-                                            p.Statue = 3;
-                                            statue3--;
-                                        }
-                                    }
-
-                                    if (pot.Contains(3) && !pot.Contains(1) && !pot.Contains(2))
-                                    {
-                                        if (statue1 > statue2)
-                                        {
-                                            p.Statue = 1;
-                                            statue1--;
-                                        }
-                                        if (statue1 < statue2)
-                                        {
-                                            p.Statue = 2;
-                                            statue2--;
-                                        }
-                                    }
-                                }
-
+                                res = res + l.Distance;
                             }
                         }
-
                     }
                 }
+            }
 
-                List<bool> teste = new List<bool>();
+            return 0;
+        }
 
-                foreach (Point p in List_Points)
+
+        public List<Point> Statue(List<Point> M)
+        {
+            List<Point> res = new List<Point>();
+            res = M;
+
+            if (res[0].Statue == 0)
+            {
+
+                List<List<Point>> resu = new List<List<Point>>();
+                List<int> erreur = new List<int>();
+                for (int i = 0; i < 10; i++)
                 {
-                    if (p.Statue != 0)
+                    foreach (Point p in res)
                     {
-                        teste.Add(true);
+                        Random r = new Random();
+                        r.Next(1, 4);
+                        p.Statue = Convert.ToInt32(r);
+                    }
+
+                    foreach (Point p in res)
+                    {
+
+                        foreach (lien l in p.List_Voisins)
+                        {
+                            Point test = new Point("", null);
+                            foreach (Point pt in res)
+                            {
+                                if (l.NomVoisin == pt.NomPoint)
+                                {
+                                    test = pt;
+                                }
+                            }
+
+                            if (p.Statue == test.Statue)
+                            {
+                                ++erreur[i];
+                            }
+                        }
+                    }
+
+                    if (i > 1)
+                    {
+                        for (int j = 0; j < erreur.Count - 1; j++)
+                        {
+                            for (int k = 0; k < erreur.Count; k++)
+                            {
+                                if (erreur[j] > erreur[j + 1])
+                                {
+                                    erreur.Reverse(j, 2);
+                                    resu.Reverse(j, 2);
+                                }
+                            }
+                        }
                     }
                     else
                     {
-                        teste.Add(false);
+                        resu[i] = res;
                     }
                 }
+            }
 
-                if (teste.Contains(false))
-                {
-                    test = false;
-                }
-                else
-                {
-                    test = true;
-                }
-            } while (test);
+            else
+            {
 
-            return res;
-        }*/
+
+
+            }
+
+
+
+
+            return resu[0];
+        }
+     
 
 
     }
