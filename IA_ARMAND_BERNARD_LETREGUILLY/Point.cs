@@ -45,16 +45,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             get { return _list_Voisins; }
             set { _list_Voisins = value; }
         }
-       /* public Point(string nom, List<Lien> voisins)
-        {
-            _nomPoint = nom;
-            this._list_Voisins = new List<Lien>();
 
-            foreach (Lien l in voisins)
-                this._list_Voisins.Add(l);
-
-            _ferme = false;
-        }*/
         public Point(string nom, List<Lien> voisins, bool ferme = false)
         {
             this._nomPoint = nom;
