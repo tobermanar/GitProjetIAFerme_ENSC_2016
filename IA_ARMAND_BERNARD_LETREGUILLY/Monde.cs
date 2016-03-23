@@ -194,6 +194,13 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             }
             return resu[0];
         }
+<<<<<<< HEAD
+=======
+     
+
+        
+
+>>>>>>> refs/remotes/origin/master
         public static Point findPointNode(GenericNode node)
         {
             Point pointNode;
