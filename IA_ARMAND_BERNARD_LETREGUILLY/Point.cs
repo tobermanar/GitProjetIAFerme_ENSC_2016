@@ -10,7 +10,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         private List<Lien> _list_Voisins;
         private string _nomPoint;
         private bool _ferme;
-        private int _statue = 0;
 
         public override string ToString()
         {
@@ -41,17 +40,25 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             get { return _nomPoint; }
             set { _nomPoint = value; }
         }
-        public int Statue
-        {
-            get { return _statue; }
-            set { _statue = value; }
-        }
         public List<Lien> List_Voisins
         {
             get { return _list_Voisins; }
             set { _list_Voisins = value; }
         }
+<<<<<<< HEAD
 
+=======
+       /* public Point(string nom, List<Lien> voisins)
+        {
+            _nomPoint = nom;
+            this._list_Voisins = new List<Lien>();
+
+            foreach (Lien l in voisins)
+                this._list_Voisins.Add(l);
+
+            _ferme = false;
+        }*/
+>>>>>>> parent of 53ed2d0... fin q5
         public Point(string nom, List<Lien> voisins, bool ferme = false)
         {
             this._nomPoint = nom;

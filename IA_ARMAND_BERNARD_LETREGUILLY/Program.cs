@@ -20,8 +20,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
             
-           
-
         }
     }
 }
