@@ -163,12 +163,12 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             
             // Shutdown the painting of the ListBox as items are added.
             listBox2.BeginUpdate();
-            listBox2.Items.Add("Résultat impasses");
+            listBox2.Items.Add("Question 1 : ");
             foreach (Point element in Monde.Impasses())
             {
                 listBox2.Items.Add(element);
             }
-            listBox2.Items.Add("Fin impasses");
+            listBox2.Items.Add("Fin question 1");
             // Allow the ListBox to repaint and display the new items.
             listBox2.EndUpdate();
         }

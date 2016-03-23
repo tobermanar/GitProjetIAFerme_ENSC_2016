@@ -73,9 +73,12 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.HorizontalScrollbar = true;
             this.listBox1.ItemHeight = 20;
             this.listBox1.Location = new System.Drawing.Point(12, 41);
             this.listBox1.Name = "listBox1";
+            this.listBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.listBox1.ScrollAlwaysVisible = true;
             this.listBox1.Size = new System.Drawing.Size(774, 224);
             this.listBox1.TabIndex = 3;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
@@ -83,10 +86,12 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
+            this.listBox2.HorizontalScrollbar = true;
             this.listBox2.ItemHeight = 20;
             this.listBox2.Location = new System.Drawing.Point(808, 41);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(774, 224);
+            this.listBox2.ScrollAlwaysVisible = true;
+            this.listBox2.Size = new System.Drawing.Size(774, 644);
             this.listBox2.TabIndex = 5;
             // 
             // button_q2
@@ -129,7 +134,7 @@
             // 
             // button_clear
             // 
-            this.button_clear.Location = new System.Drawing.Point(808, 271);
+            this.button_clear.Location = new System.Drawing.Point(808, 700);
             this.button_clear.Name = "button_clear";
             this.button_clear.Size = new System.Drawing.Size(131, 31);
             this.button_clear.TabIndex = 11;
@@ -159,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1754, 743);
+            this.ClientSize = new System.Drawing.Size(1594, 743);
             this.Controls.Add(this.Q2);
             this.Controls.Add(this.Q1);
             this.Controls.Add(this.button_clear);

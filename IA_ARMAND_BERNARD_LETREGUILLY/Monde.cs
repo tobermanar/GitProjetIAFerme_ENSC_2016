@@ -53,7 +53,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
             List<GenericNode> res2 = new List<GenericNode>();
 
-           // res2 = g.RechercheSolutionAEtoile(a, b);
+          //  res2 = g.RechercheSolutionAEtoile(a, b);
 
             for (int j = 0; j < res2.Count-1; j++)
             {
@@ -71,7 +71,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                     }
                 }
             }
-
             return res;
         }
 
