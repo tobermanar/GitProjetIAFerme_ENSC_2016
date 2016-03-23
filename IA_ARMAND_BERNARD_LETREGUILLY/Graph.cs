@@ -37,7 +37,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             return null;
         }
 
-        public List<GenericNode> RechercheSolutionAEtoile(NodeL N0, NodeL NodeFin)
+        public List<GenericNode> RechercheSolutionAEtoile(GenericNode N0, string NomPointFin)
         {
             L_Ouverts = new List<GenericNode>();
             L_Fermes = new List<GenericNode>();
@@ -46,7 +46,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             L_Ouverts.Add(N0);
 
             // tant que le noeud n'est pas terminal et que ouverts n'est pas vide
-            while (L_Ouverts.Count != 0 && N.EndState(NodeFin) == false)
+            while (L_Ouverts.Count != 0 && N.EndState(NomPointFin) == false)
             {
                 // Le meilleur noeud des ouverts est supposé placé en tête de liste
                 // On le place dans les fermés
@@ -111,7 +111,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                             // HCost pas recalculé car toujours bon
                             N2bis.calculCoutTotal(); // somme de GCost et HCost
                             // Mise à jour de la famille ....
-                            N2bis.Supprime_Liens_Parent ();
+                            N2bis.Supprime_Liens_Parent();
                             N2bis.SetNoeud_Parent(N);
                             // Mise à jour des ouverts
                             L_Ouverts.Remove(N2bis);
@@ -167,30 +167,30 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
         // Si on veut afficher l'arbre de recherche, il suffit de passer un treeview en paramètres
         // Celui-ci est mis à jour avec les noeuds de la liste des fermés, on ne tient pas compte des ouverts
-        public void GetSearchTree( TreeView TV )
+        public void GetSearchTree(TreeView TV)
         {
             if (L_Fermes == null) return;
             if (L_Fermes.Count == 0) return;
-            
+
             // On suppose le TreeView préexistant
             TV.Nodes.Clear();
 
-            TreeNode TN = new TreeNode ( L_Fermes[0].GetNom() );
+            TreeNode TN = new TreeNode(L_Fermes[0].GetNom());
             TV.Nodes.Add(TN);
 
-            AjouteBranche ( L_Fermes[0], TN );
+            AjouteBranche(L_Fermes[0], TN);
         }
 
         // AjouteBranche est exclusivement appelée par GetSearchTree; les noeuds sont ajoutés de manière récursive
-        private void AjouteBranche( GenericNode GN, TreeNode TN)
+        private void AjouteBranche(GenericNode GN, TreeNode TN)
         {
             foreach (GenericNode GNfils in GN.GetEnfants())
             {
                 TreeNode TNfils = new TreeNode(GNfils.GetNom());
                 TN.Nodes.Add(TNfils);
-                if (GNfils.GetEnfants().Count > 0) AjouteBranche(GNfils, TNfils); 
+                if (GNfils.GetEnfants().Count > 0) AjouteBranche(GNfils, TNfils);
             }
         }
-  
+
     }
 }

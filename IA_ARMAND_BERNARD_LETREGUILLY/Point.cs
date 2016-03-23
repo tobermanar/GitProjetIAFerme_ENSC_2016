@@ -51,7 +51,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             get { return _list_Voisins; }
             set { _list_Voisins = value; }
         }
-       
+
         public Point(string nom, List<Lien> voisins, bool ferme = false)
         {
             this._nomPoint = nom;

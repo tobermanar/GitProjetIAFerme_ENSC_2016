@@ -3,3 +3,6 @@
 *.exe
 *.cache
 *.resources
+*.pdb
+*.exe
+*.suo

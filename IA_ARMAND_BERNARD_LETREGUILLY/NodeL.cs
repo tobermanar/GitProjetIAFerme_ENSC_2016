@@ -5,37 +5,27 @@ using System.Text;
 
 namespace IA_ARMAND_BERNARD_LETREGUILLY
 {
-    public class NodeL : GenericNode
+    class NodeL : GenericNode
     {
         public NodeL(string newname)
             : base(newname)
         {
         }
 
-        public override bool EndState(GenericNode NodeFin)
+        public override bool EndState(String NomPointFin)
         {
-            int f = this.Name.Length;
-            return (this.Name[f].ToString() == NodeFin.GetNom());
+            return (this.GetNom() == NomPointFin);
         }
 
 
         public override List<GenericNode> GetListSucc()
         {
             List<GenericNode> list_succ = new List<GenericNode>();
-
-            int f = this.Name.Length;
-
-            foreach (Point p in Monde.List_Points)
+            Point point = this.findPointNode();
+            foreach (Lien successeur in point.List_Voisins)
             {
-                if (this.Name[f].ToString() == p.NomPoint)
-                {
-                    foreach (Lien l in p.List_Voisins)
-                    {
-                        list_succ.Add(new NodeL(this.Name + l.ToString()));
-                    }
-                }
+                list_succ.Add(new NodeL(successeur.NomVoisin));
             }
-
             return list_succ;
         }
 
@@ -43,7 +33,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         public override double GetArcCost(GenericNode node)
         {
             //on cherche à quel point ce node (this) correspond parmis les points du monde
-            Point pointNode = Monde.List_Points.Find(point => point.NomPoint == node.GetNom());
+            Point pointNode = Monde.findPointNode(node);
             if (pointNode != null)
             {
                 //on cherche à quel point voisin le noeud node correspond
@@ -54,8 +44,9 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 }
                 else
                 {
-                    string erreur = "ce point n'a pas de voisin correspondant au nom " + node.GetNom();
-                    throw new Exception(erreur);
+                    return -1;
+                    /*string erreur = "ce point n'a pas de voisin correspondant au nom " + node.GetNom();
+                    throw new Exception(erreur);*/
                 }
             }
             else
@@ -67,6 +58,11 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         public override void CalculeHCost()
         {
             SetEstimation(0);
+        }
+        public Point findPointNode()
+        {
+            Point pointNode;
+            return pointNode = Monde.List_Points.Find(point => point.NomPoint == this.GetNom());
         }
     }
 }
