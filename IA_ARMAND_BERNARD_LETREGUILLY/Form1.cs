@@ -187,5 +187,14 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             listBox2.Items.Clear();
             listBox2.EndUpdate();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {            
+            List<Point> res = Monde.Statue(Monde.List_Points);
+            foreach (Point p in res)
+            {
+                listBox2.Items.Add(p);
+            }
+        }
     }
 }

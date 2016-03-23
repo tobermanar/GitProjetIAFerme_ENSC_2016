@@ -89,8 +89,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                     foreach (Point p in res)
                     {
                         Random r = new Random();
-                        r.Next(1, 4);
-                        p.Statue = Convert.ToInt32(r);
+                        int R = r.Next(1, 4);                        
+                        p.Statue = R;
                     }
 
                     foreach (Point p in res)
@@ -98,7 +98,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
                         foreach (Lien l in p.List_Voisins)
                         {
-                            Point test = new Point("", null);
+                            Point test = new Point("",null);
                             foreach (Point pt in res)
                             {
                                 if (l.NomVoisin == pt.NomPoint)
