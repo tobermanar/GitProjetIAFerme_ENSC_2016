@@ -35,14 +35,17 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
-            this.button_q2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button_clear = new System.Windows.Forms.Button();
             this.Q1 = new System.Windows.Forms.Label();
-            this.Q2 = new System.Windows.Forms.Label();
             this.q2_alphabetical1 = new System.Windows.Forms.ListBox();
             this.q2_alphabetical2 = new System.Windows.Forms.ListBox();
+            this.button_q2 = new System.Windows.Forms.Button();
+            this.Q2 = new System.Windows.Forms.Label();
+            this.Q3 = new System.Windows.Forms.Label();
+            this.button_q3 = new System.Windows.Forms.Button();
+            this.textQ3 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button_q1
@@ -96,16 +99,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             this.listBox2.Size = new System.Drawing.Size(774, 644);
             this.listBox2.TabIndex = 5;
             // 
-            // button_q2
-            // 
-            this.button_q2.Location = new System.Drawing.Point(58, 349);
-            this.button_q2.Name = "button_q2";
-            this.button_q2.Size = new System.Drawing.Size(158, 31);
-            this.button_q2.TabIndex = 7;
-            this.button_q2.Text = "Plus court chemin";
-            this.button_q2.UseVisualStyleBackColor = true;
-            this.button_q2.Click += new System.EventHandler(this.button_q2_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -143,20 +136,11 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             this.Q1.TabIndex = 12;
             this.Q1.Text = "Q1";
             // 
-            // Q2
-            // 
-            this.Q2.AutoSize = true;
-            this.Q2.Location = new System.Drawing.Point(24, 354);
-            this.Q2.Name = "Q2";
-            this.Q2.Size = new System.Drawing.Size(30, 20);
-            this.Q2.TabIndex = 13;
-            this.Q2.Text = "Q2";
-            // 
             // q2_alphabetical1
             // 
             this.q2_alphabetical1.FormattingEnabled = true;
             this.q2_alphabetical1.ItemHeight = 20;
-            this.q2_alphabetical1.Location = new System.Drawing.Point(222, 349);
+            this.q2_alphabetical1.Location = new System.Drawing.Point(222, 336);
             this.q2_alphabetical1.Name = "q2_alphabetical1";
             this.q2_alphabetical1.ScrollAlwaysVisible = true;
             this.q2_alphabetical1.Size = new System.Drawing.Size(62, 44);
@@ -166,17 +150,65 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             // 
             this.q2_alphabetical2.FormattingEnabled = true;
             this.q2_alphabetical2.ItemHeight = 20;
-            this.q2_alphabetical2.Location = new System.Drawing.Point(300, 349);
+            this.q2_alphabetical2.Location = new System.Drawing.Point(303, 336);
             this.q2_alphabetical2.Name = "q2_alphabetical2";
             this.q2_alphabetical2.ScrollAlwaysVisible = true;
             this.q2_alphabetical2.Size = new System.Drawing.Size(62, 44);
             this.q2_alphabetical2.TabIndex = 15;
+            // 
+            // button_q2
+            // 
+            this.button_q2.Location = new System.Drawing.Point(58, 349);
+            this.button_q2.Name = "button_q2";
+            this.button_q2.Size = new System.Drawing.Size(158, 31);
+            this.button_q2.TabIndex = 7;
+            this.button_q2.Text = "Plus court chemin";
+            this.button_q2.UseVisualStyleBackColor = true;
+            this.button_q2.Click += new System.EventHandler(this.button_q2_Click);
+            // 
+            // Q2
+            // 
+            this.Q2.AutoSize = true;
+            this.Q2.Location = new System.Drawing.Point(24, 354);
+            this.Q2.Name = "Q2";
+            this.Q2.Size = new System.Drawing.Size(30, 20);
+            this.Q2.TabIndex = 13;
+            this.Q2.Text = "Q2";
+            // 
+            // Q3
+            // 
+            this.Q3.AutoSize = true;
+            this.Q3.Location = new System.Drawing.Point(24, 391);
+            this.Q3.Name = "Q3";
+            this.Q3.Size = new System.Drawing.Size(30, 20);
+            this.Q3.TabIndex = 17;
+            this.Q3.Text = "Q3";
+            // 
+            // button_q3
+            // 
+            this.button_q3.Location = new System.Drawing.Point(58, 386);
+            this.button_q3.Name = "button_q3";
+            this.button_q3.Size = new System.Drawing.Size(158, 31);
+            this.button_q3.TabIndex = 16;
+            this.button_q3.Text = "Plus court circuit";
+            this.button_q3.UseVisualStyleBackColor = true;
+            // 
+            // textQ3
+            // 
+            this.textQ3.Location = new System.Drawing.Point(222, 388);
+            this.textQ3.Name = "textQ3";
+            this.textQ3.Size = new System.Drawing.Size(553, 26);
+            this.textQ3.TabIndex = 18;
+            this.textQ3.Click += new System.EventHandler(this.textQ3_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1594, 743);
+            this.Controls.Add(this.textQ3);
+            this.Controls.Add(this.Q3);
+            this.Controls.Add(this.button_q3);
             this.Controls.Add(this.q2_alphabetical2);
             this.Controls.Add(this.q2_alphabetical1);
             this.Controls.Add(this.Q2);
@@ -202,14 +234,17 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.Button button_q2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button_clear;
         private System.Windows.Forms.Label Q1;
-        private System.Windows.Forms.Label Q2;
         private System.Windows.Forms.ListBox q2_alphabetical1;
         private System.Windows.Forms.ListBox q2_alphabetical2;
+        private System.Windows.Forms.Button button_q2;
+        private System.Windows.Forms.Label Q2;
+        private System.Windows.Forms.Label Q3;
+        private System.Windows.Forms.Button button_q3;
+        private System.Windows.Forms.TextBox textQ3;
     }
 }
 

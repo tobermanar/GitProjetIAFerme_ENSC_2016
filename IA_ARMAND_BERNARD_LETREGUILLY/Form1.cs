@@ -142,6 +142,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 q2_alphabetical2.Items.Add(string.Format("{0}", Convert.ToChar('A' + i)));
             }
             q2_alphabetical2.EndUpdate();
+            textQ3.ForeColor = Color.Gray;
+            textQ3.Text = "Entrez une liste de points séparés par une virgule";
         }
 
         private void button_q1_Click(object sender, EventArgs e)
@@ -149,7 +151,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             
             // Shutdown the painting of the ListBox as items are added.
             listBox2.BeginUpdate();
-            listBox2.Items.Add("Question 1 : ");
+            listBox2.Items.Add("  Question 1 : ");
             foreach (Point element in Monde.Impasses())
             {
                 listBox2.Items.Add(element);
@@ -160,23 +162,60 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         }
         private void button_q2_Click(object sender, EventArgs e)
         {
-            //TODO Associer la question 2
             string param1 = q2_alphabetical1.GetItemText(q2_alphabetical1.SelectedItem);
             string param2 = q2_alphabetical2.GetItemText(q2_alphabetical2.SelectedItem);
             string[] result = Monde.Distance(param1, param2);
-            listBox2.Items.Add("Question 2 : ");
+            listBox2.Items.Add("  Question 2 : ");
             listBox2.BeginUpdate();
             listBox2.Items.Add("Distance entre " + param1 + " et " + param2 + " = " + result[0]);
             listBox2.Items.Add("Chemin : " + result[1]);
             listBox2.Items.Add("Fin question 2");
             listBox2.EndUpdate();
         }
-
+        private void button_q3_Click(object sender, EventArgs e)
+        {
+            //Gestion du texte de Q3
+            //Découpage à chaque virgule
+            string[] lettresDecoupes = textQ3.Text.Split(',');
+            //Vérification pour savoir si il ne s'agit que de lettres
+            int  nombreLettresValides = lettresDecoupes.Count();
+            for (int i = 0; i < lettresDecoupes.Count(); i++)
+            {
+                for (int j = 0; j < 23; j++)
+                {
+                    if (string.Format("{0}", Convert.ToChar('A' + j)) == lettresDecoupes[i])
+                    {
+                        nombreLettresValides--;
+                    }
+                }
+            }
+            if (nombreLettresValides == 0)
+            {
+                //Ajouter appel a fonction
+                listBox2.Items.Add("  Question 3 : ");
+                listBox2.BeginUpdate();
+                // listBox2.Items.Add("Distance entre " + param1 + " et " + param2 + " = " + result[0]);
+                //  listBox2.Items.Add("Chemin : " + result[1]);
+                listBox2.Items.Add("Fin question 3");
+                listBox2.EndUpdate();
+            }
+            else
+            {
+                textQ3.Text = "Erreur lors de la saisie, recommencez";
+                textQ3.ForeColor = Color.Red;
+            }
+        }
         private void button_clear_Click(object sender, EventArgs e)
         {
             listBox2.BeginUpdate();
             listBox2.Items.Clear();
             listBox2.EndUpdate();
+        }
+
+        private void textQ3_Click(object sender, EventArgs e)
+        {
+            textQ3.Clear();
+            textQ3.ForeColor = Color.Black;
         }
     }
 }
