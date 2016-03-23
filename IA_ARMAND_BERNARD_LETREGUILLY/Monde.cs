@@ -45,31 +45,37 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         public static int Distance2(Point A, Point B)
         {
             int res =0;
-
-            Graph g = new Graph();
-
-            NodeL a = new NodeL(A.NomPoint);
-            NodeL b = new NodeL(B.NomPoint);
-
-            List<GenericNode> res2 = new List<GenericNode>();
-
-          //  res2 = g.RechercheSolutionAEtoile(a, b);
-
-            for (int j = 0; j < res2.Count-1; j++)
+            if (A != B)
             {
-                foreach (Point p in Monde.List_Points)
+                Graph g = new Graph();
+
+                NodeL a = new NodeL(A.NomPoint);
+                NodeL b = new NodeL(B.NomPoint);
+
+                List<GenericNode> res2 = new List<GenericNode>();
+
+                //  res2 = g.RechercheSolutionAEtoile(a, b);
+
+                for (int j = 0; j < res2.Count - 1; j++)
                 {
-                    if (res2[j].GetNom() == p.NomPoint)
+                    foreach (Point p in Monde.List_Points)
                     {
-                        foreach (Lien l in p.List_Voisins)
+                        if (res2[j].GetNom() == p.NomPoint)
                         {
-                            if (res2[j + 1].GetNom() == l.NomVoisin)
+                            foreach (Lien l in p.List_Voisins)
                             {
-                                res = res + l.Distance;
+                                if (res2[j + 1].GetNom() == l.NomVoisin)
+                                {
+                                    res = res + l.Distance;
+                                }
                             }
                         }
                     }
                 }
+            }
+            else
+            {
+                res = 0;
             }
             return res;
         }

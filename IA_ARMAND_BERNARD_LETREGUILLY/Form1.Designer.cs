@@ -1,4 +1,6 @@
-﻿namespace IA_ARMAND_BERNARD_LETREGUILLY
+﻿using System.Collections.Generic;
+using System;
+namespace IA_ARMAND_BERNARD_LETREGUILLY
 {
     partial class Form1
     {
@@ -36,10 +38,11 @@
             this.button_q2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.button_clear = new System.Windows.Forms.Button();
             this.Q1 = new System.Windows.Forms.Label();
             this.Q2 = new System.Windows.Forms.Label();
+            this.q2_alphabetical1 = new System.Windows.Forms.ListBox();
+            this.q2_alphabetical2 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // button_q1
@@ -81,7 +84,6 @@
             this.listBox1.ScrollAlwaysVisible = true;
             this.listBox1.Size = new System.Drawing.Size(774, 224);
             this.listBox1.TabIndex = 3;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // listBox2
             // 
@@ -122,16 +124,6 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Sortie(s)";
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(222, 349);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(466, 31);
-            this.textBox3.TabIndex = 10;
-            this.textBox3.Text = "Entrez deux noeuds présent dans la liste séparés par un espace.";
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
             // button_clear
             // 
             this.button_clear.Location = new System.Drawing.Point(808, 700);
@@ -160,15 +152,36 @@
             this.Q2.TabIndex = 13;
             this.Q2.Text = "Q2";
             // 
+            // q2_alphabetical1
+            // 
+            this.q2_alphabetical1.FormattingEnabled = true;
+            this.q2_alphabetical1.ItemHeight = 20;
+            this.q2_alphabetical1.Location = new System.Drawing.Point(222, 349);
+            this.q2_alphabetical1.Name = "q2_alphabetical1";
+            this.q2_alphabetical1.ScrollAlwaysVisible = true;
+            this.q2_alphabetical1.Size = new System.Drawing.Size(62, 44);
+            this.q2_alphabetical1.TabIndex = 14;
+            // 
+            // q2_alphabetical2
+            // 
+            this.q2_alphabetical2.FormattingEnabled = true;
+            this.q2_alphabetical2.ItemHeight = 20;
+            this.q2_alphabetical2.Location = new System.Drawing.Point(300, 349);
+            this.q2_alphabetical2.Name = "q2_alphabetical2";
+            this.q2_alphabetical2.ScrollAlwaysVisible = true;
+            this.q2_alphabetical2.Size = new System.Drawing.Size(62, 44);
+            this.q2_alphabetical2.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1594, 743);
+            this.Controls.Add(this.q2_alphabetical2);
+            this.Controls.Add(this.q2_alphabetical1);
             this.Controls.Add(this.Q2);
             this.Controls.Add(this.Q1);
             this.Controls.Add(this.button_clear);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_q2);
@@ -177,7 +190,6 @@
             this.Controls.Add(this.button_q1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,10 +205,11 @@
         private System.Windows.Forms.Button button_q2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button_clear;
         private System.Windows.Forms.Label Q1;
         private System.Windows.Forms.Label Q2;
+        private System.Windows.Forms.ListBox q2_alphabetical1;
+        private System.Windows.Forms.ListBox q2_alphabetical2;
     }
 }
 

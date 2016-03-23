@@ -129,33 +129,19 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             Monde.List_Points = list_Points;
             //this.Fermes = new Monde("fermes", list_Points);
             listBox1.DataSource = list_Points; // La liste que tu veux afficher dans ListBox
-            //listBox1.DataTextField = "Fermes" // Le nom de la propriéé qui sera afficher dans ListBox
-            //listBox1.DataBind(); // Méthode qui actualise lales données de la liste
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void resultats_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void fermes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load_1(object sender, EventArgs e)
-        {
-
+            //Initialisation des listbox de la question 2
+            q2_alphabetical1.BeginUpdate();
+            for (int i = 0; i < 26; i++)
+            {
+                q2_alphabetical1.Items.Add(string.Format("{0}", Convert.ToChar('A' + i)));
+            }
+            q2_alphabetical1.EndUpdate();
+            q2_alphabetical2.BeginUpdate();
+            for (int i = 0; i < 26; i++)
+            {
+                q2_alphabetical2.Items.Add(string.Format("{0}", Convert.ToChar('A' + i)));
+            }
+            q2_alphabetical2.EndUpdate();
         }
 
         private void button_q1_Click(object sender, EventArgs e)
@@ -174,11 +160,18 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         }
         private void button_q2_Click(object sender, EventArgs e)
         {
+            //TODO Associer la question 2
+            string param1 = q2_alphabetical1.GetItemText(q2_alphabetical1.SelectedItem);
+            string param2 = q2_alphabetical2.GetItemText(q2_alphabetical2.SelectedItem);
+            param1 = param1 + " " + param2;
 
-        }
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-            String[] elements = Regex.Split(textBox3.ToString(), @"\s?");
+
+
+            listBox2.Items.Add("Question 2 : ");
+            listBox2.BeginUpdate();
+            listBox2.Items.Add("TODO");
+            listBox2.Items.Add("Fin question 2");
+            listBox2.EndUpdate();
         }
 
         private void button_clear_Click(object sender, EventArgs e)
