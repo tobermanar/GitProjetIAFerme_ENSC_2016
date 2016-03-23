@@ -14,6 +14,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         [STAThread]
         static void Main()
         {
+            Graph leGraph = new Graph();
+            List<GenericNode> truc = leGraph.RechercheSolutionAEtoile(new NodeL("A"), "L");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
