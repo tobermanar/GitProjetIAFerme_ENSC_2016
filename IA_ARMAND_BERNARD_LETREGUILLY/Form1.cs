@@ -12,9 +12,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 {
     public partial class Form1 : Form
     {
-        private string textBox3_text;
-        List<String> sorties = new List<String>();
-
         public Form1()
         {
             InitializeComponent();
@@ -163,31 +160,32 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
         private void button_q1_Click(object sender, EventArgs e)
         {
+            
             // Shutdown the painting of the ListBox as items are added.
             listBox2.BeginUpdate();
-            // Loop through and add 50 items to the ListBox.
-            for (int x = 1; x <= 50; x++)
+            listBox2.Items.Add("Résultat impasses");
+            foreach (Point element in Monde.Impasses())
             {
-                listBox2.Items.Add(textBox3.ToString());
+                listBox2.Items.Add(element);
             }
+            listBox2.Items.Add("Fin impasses");
             // Allow the ListBox to repaint and display the new items.
             listBox2.EndUpdate();
         }
         private void button_q2_Click(object sender, EventArgs e)
         {
-            sorties.Add(textBox3_text);
-            listBox2.DataSource = sorties;
+
         }
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            textBox3_text = textBox3.ToString();
-            String[] elements = Regex.Split(textBox3_text, @"\s?");
+            String[] elements = Regex.Split(textBox3.ToString(), @"\s?");
         }
 
         private void button_clear_Click(object sender, EventArgs e)
         {
-            sorties.Clear();
-            listBox2.DataSource = sorties;
+            listBox2.BeginUpdate();
+            listBox2.Items.Clear();
+            listBox2.EndUpdate();
         }
     }
 }
