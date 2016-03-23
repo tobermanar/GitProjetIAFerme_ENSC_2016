@@ -163,13 +163,10 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             //TODO Associer la question 2
             string param1 = q2_alphabetical1.GetItemText(q2_alphabetical1.SelectedItem);
             string param2 = q2_alphabetical2.GetItemText(q2_alphabetical2.SelectedItem);
-            param1 = param1 + " " + param2;
-
-
-
+            int result = Monde.Distance2(Monde.FindPointByString(param1), Monde.FindPointByString(param2));
             listBox2.Items.Add("Question 2 : ");
             listBox2.BeginUpdate();
-            listBox2.Items.Add("TODO");
+            listBox2.Items.Add("Distance entre " + param1 + " et " + param2 + " = " + result);
             listBox2.Items.Add("Fin question 2");
             listBox2.EndUpdate();
         }

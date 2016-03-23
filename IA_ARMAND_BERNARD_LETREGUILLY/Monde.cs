@@ -205,5 +205,18 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             Point pointNode;
             return pointNode = List_Points.Find(point => point.NomPoint == node.GetNom());
         }
+
+        public static Point FindPointByString(string toFind)
+        {
+            Point trouve = null;
+            foreach (Point cherche in Monde.List_Points)
+            {
+                if (toFind == cherche.NomPoint)
+                {
+                    trouve = cherche;
+                }
+            }
+            return trouve;
+        }
     }
 }
