@@ -33,11 +33,13 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         public override double GetArcCost(GenericNode node)
         {
             //on cherche à quel point ce node (this) correspond parmis les points du monde
-            Point pointNode = Monde.findPointNode(node);
+            Point pointNode = this.findPointNode();
             if (pointNode != null)
             {
                 //on cherche à quel point voisin le noeud node correspond
-                Lien resultat = pointNode.List_Voisins.Find(voisin => voisin.NomVoisin == node.GetNom()); ;
+                List<Point> bobby = Monde.List_Points;
+                Lien resultat = pointNode.List_Voisins.Find(voisin => voisin.NomVoisin == node.GetNom());
+                if (resultat.Equals(null)) throw new Exception("le point n\'a pas de voisin correspondant à ce nom");
                 if (resultat.Distance != 0)
                 {
                     return resultat.Distance;
@@ -61,8 +63,9 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         }
         public Point findPointNode()
         {
-            Point pointNode;
-            return pointNode = Monde.List_Points.Find(point => point.NomPoint == this.GetNom());
+            Point pointNode = Monde.List_Points.Find(point => this.GetNom() == point.NomPoint); ;
+            if (!pointNode.Equals(null)) return pointNode;
+            else throw new Exception("il n'y a pas de point correspondant à ce nom");
         }
     }
 }

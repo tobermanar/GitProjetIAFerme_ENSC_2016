@@ -8,7 +8,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
     class Lien
     {
         private string _nomVoisin;
-        private int _distance;
+        private int _distance = 0;
         public string NomVoisin
         {
             get { return _nomVoisin; }

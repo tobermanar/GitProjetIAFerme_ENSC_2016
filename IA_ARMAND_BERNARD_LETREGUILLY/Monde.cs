@@ -15,11 +15,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             get { return _nomMonde; }
             set { _nomMonde = value; }
         }
-        /*public static Monde(string nom, List<Point> points)
-        {
-            _nomMonde = nom;
-            List_Points = points;
-        }*/
 
         public static List<Point> Impasses()
         {
@@ -35,49 +30,40 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         }
 
         // Ajoutez à votre programme un module qui demande à l’utilisateur 2 points du réseau (2 lettres) et qui détermine le plus court chemin entre ces points ainsi que sa valeur.
-        public static List<Point> Distance(Point A, Point B)
+        public static string[] Distance(string A, string B)
         {
-            List<Point> res = new List<Point>();
-            return res;
+            string[] distance = new string[2];
+            double distanceTempo = 0;
+            Graph leGraph = new Graph();
+            List<GenericNode> chemin = leGraph.RechercheSolutionAEtoile(new NodeL(A), B);
+            for (int i = 0; i < chemin.Count() - 1; i++)
+            {
+                distanceTempo = distanceTempo + chemin[i].GetArcCost(chemin[i + 1]);
+                distance[1] = distance[1] + ", " + chemin[i].GetNom();
+            }
+            distance[0] = distanceTempo.ToString();
+            distance[1] = distance[1] + " " + B;
+            
+            return distance;
         }
 
-
-        public static int Distance2(Point A, Point B)
+        public static Point findPointNode(GenericNode node)
         {
-            int res =0;
-            if (A != B)
+            Point pointNode;
+            return pointNode = List_Points.Find(point => point.NomPoint == node.GetNom());
+        }
+
+        public static Point findPointByString(string toFind)
+        {
+            Point trouve = null;
+            foreach (Point cherche in Monde.List_Points)
             {
-                Graph g = new Graph();
-
-                NodeL a = new NodeL(A.NomPoint);
-                NodeL b = new NodeL(B.NomPoint);
-
-                List<GenericNode> res2 = new List<GenericNode>();
-
-                //  res2 = g.RechercheSolutionAEtoile(a, b);
-
-                for (int j = 0; j < res2.Count - 1; j++)
+                if (toFind == cherche.NomPoint)
                 {
-                    foreach (Point p in Monde.List_Points)
-                    {
-                        if (res2[j].GetNom() == p.NomPoint)
-                        {
-                            foreach (Lien l in p.List_Voisins)
-                            {
-                                if (res2[j + 1].GetNom() == l.NomVoisin)
-                                {
-                                    res = res + l.Distance;
-                                }
-                            }
-                        }
-                    }
+                    trouve = cherche;
                 }
             }
-            else
-            {
-                res = 0;
-            }
-            return res;
+            return trouve;
         }
 
         public static List<Point> Statue(List<Point> M)
@@ -87,7 +73,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             List<List<Point>> resu = new List<List<Point>>();
 
             if (res[0].Statue == 0)
-            {                
+            {
                 List<int> erreur = new List<int>();
                 for (int i = 0; i < 1000; i++)
                 {
@@ -144,7 +130,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             {
                 List<int> erreur = new List<int>();
                 for (int i = 0; i < 1000; i++)
-                {   
+                {
                     foreach (Point p in res)
                     {
                         Random c = new Random();
@@ -156,9 +142,9 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                             p.Statue = Convert.ToInt32(r);
                         }
                     }
-                    
+
                     foreach (Point p in res)
-                    {                        
+                    {
                         foreach (Lien l in p.List_Voisins)
                         {
                             Point test = new Point("", null);
@@ -198,25 +184,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 }
             }
             return resu[0];
-        }
-
-        public static Point findPointNode(GenericNode node)
-        {
-            Point pointNode;
-            return pointNode = List_Points.Find(point => point.NomPoint == node.GetNom());
-        }
-
-        public static Point FindPointByString(string toFind)
-        {
-            Point trouve = null;
-            foreach (Point cherche in Monde.List_Points)
-            {
-                if (toFind == cherche.NomPoint)
-                {
-                    trouve = cherche;
-                }
-            }
-            return trouve;
         }
     }
 }

@@ -131,13 +131,13 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             listBox1.DataSource = list_Points; // La liste que tu veux afficher dans ListBox
             //Initialisation des listbox de la question 2
             q2_alphabetical1.BeginUpdate();
-            for (int i = 0; i < 26; i++)
+            for (int i = 0; i < 23; i++)
             {
                 q2_alphabetical1.Items.Add(string.Format("{0}", Convert.ToChar('A' + i)));
             }
             q2_alphabetical1.EndUpdate();
             q2_alphabetical2.BeginUpdate();
-            for (int i = 0; i < 26; i++)
+            for (int i = 0; i < 23; i++)
             {
                 q2_alphabetical2.Items.Add(string.Format("{0}", Convert.ToChar('A' + i)));
             }
@@ -163,10 +163,11 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             //TODO Associer la question 2
             string param1 = q2_alphabetical1.GetItemText(q2_alphabetical1.SelectedItem);
             string param2 = q2_alphabetical2.GetItemText(q2_alphabetical2.SelectedItem);
-            int result = Monde.Distance2(Monde.FindPointByString(param1), Monde.FindPointByString(param2));
+            string[] result = Monde.Distance(param1, param2);
             listBox2.Items.Add("Question 2 : ");
             listBox2.BeginUpdate();
-            listBox2.Items.Add("Distance entre " + param1 + " et " + param2 + " = " + result);
+            listBox2.Items.Add("Distance entre " + param1 + " et " + param2 + " = " + result[0]);
+            listBox2.Items.Add("Chemin : " + result[1]);
             listBox2.Items.Add("Fin question 2");
             listBox2.EndUpdate();
         }
