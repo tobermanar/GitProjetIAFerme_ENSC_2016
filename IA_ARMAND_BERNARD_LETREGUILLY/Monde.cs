@@ -40,9 +40,9 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             List<Point> res = new List<Point>();
             return res;
         }
-<<<<<<< HEAD
 
-        public int Distance2(Point A, Point B)
+
+        public static int Distance2(Point A, Point B)
         {
             int res =0;
 
@@ -53,7 +53,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
             List<GenericNode> res2 = new List<GenericNode>();
 
-            res2 = g.RechercheSolutionAEtoile(a, b);
+           // res2 = g.RechercheSolutionAEtoile(a, b);
 
             for (int j = 0; j < res2.Count-1; j++)
             {
@@ -75,7 +75,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             return res;
         }
 
-        public List<Point> Statue(List<Point> M)
+        public static List<Point> Statue(List<Point> M)
         {
             List<Point> res = new List<Point>();
             res = M;
@@ -194,15 +194,10 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             }
             return resu[0];
         }
-     
-
-        
-=======
         public static Point findPointNode(GenericNode node)
         {
             Point pointNode;
             return pointNode = List_Points.Find(point => point.NomPoint == node.GetNom());
         }
->>>>>>> origin/master
     }
 }

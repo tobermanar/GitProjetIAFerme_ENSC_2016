@@ -163,8 +163,15 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
         private void button_q1_Click(object sender, EventArgs e)
         {
-            sorties.Add(textBox3.ToString());
-            listBox2.DataSource = sorties;
+            // Shutdown the painting of the ListBox as items are added.
+            listBox2.BeginUpdate();
+            // Loop through and add 50 items to the ListBox.
+            for (int x = 1; x <= 50; x++)
+            {
+                listBox2.Items.Add(textBox3.ToString());
+            }
+            // Allow the ListBox to repaint and display the new items.
+            listBox2.EndUpdate();
         }
         private void button_q2_Click(object sender, EventArgs e)
         {
