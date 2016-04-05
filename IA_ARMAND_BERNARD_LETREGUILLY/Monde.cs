@@ -86,6 +86,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 List<int> erreur = new List<int>();
                 for (int i = 0; i < 1000; i++)
                 {
+                    erreur.Add(0);
+                    resu.Add(new List<Point>());
                     foreach (Point p in res)
                     {
                         Random r = new Random();
@@ -98,7 +100,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
                         foreach (Lien l in p.List_Voisins)
                         {
-                            Point test = new Point("",null);
+                            Point test = new Point("", new List<Lien>(),false);
                             foreach (Point pt in res)
                             {
                                 if (l.NomVoisin == pt.NomPoint)
@@ -139,16 +141,18 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             {
                 List<int> erreur = new List<int>();
                 for (int i = 0; i < 1000; i++)
-                {   
+                {
+                    erreur.Add(0);
+                    resu.Add(new List<Point>());
                     foreach (Point p in res)
                     {
                         Random c = new Random();
-                        c.Next(1, 6);
-                        if (Convert.ToInt32(c) == 1)
+                        int C = c.Next(1, 6);
+                        if (C == 1)
                         {
                             Random r = new Random();
-                            r.Next(1, 4);
-                            p.Statue = Convert.ToInt32(r);
+                            int R = r.Next(1, 4);
+                            p.Statue = R;
                         }
                     }
                     
@@ -156,7 +160,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                     {                        
                         foreach (Lien l in p.List_Voisins)
                         {
-                            Point test = new Point("", null);
+                            Point test = new Point("", new List<Lien>(), false);
                             foreach (Point pt in res)
                             {
                                 if (l.NomVoisin == pt.NomPoint)

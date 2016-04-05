@@ -52,12 +52,19 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             set { _list_Voisins = value; }
         }
 
+        public bool Ferme
+        {
+            get { return _ferme; }
+            set { _ferme = value; }
+        }
         public Point(string nom, List<Lien> voisins, bool ferme = false)
         {
             this._nomPoint = nom;
             this._list_Voisins = new List<Lien>();
             foreach (Lien l in voisins)
+            {
                 this._list_Voisins.Add(l);
+            }
 
             this._ferme = ferme;
         }
