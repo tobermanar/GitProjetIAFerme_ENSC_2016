@@ -87,18 +87,18 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 for (int i = 0; i < 1000; i++)
                 {
                     erreur.Add(0);
-                    resu.Add(new List<Point>());
-                    foreach (Point p in res)
+                    resu.Add(res);                    
+
+                    for (int k = 0; k < 23; k++)
                     {
                         Random r = new Random();
-                        int R = r.Next(1, 4);                        
-                        p.Statue = R;
+                        int R = r.Next(1, 4);
+                        resu[i][k].Statue = R;
                     }
 
-                    foreach (Point p in res)
+                    for (int k = 0; k < 23; k++)
                     {
-
-                        foreach (Lien l in p.List_Voisins)
+                        foreach (Lien l in res[k].List_Voisins)
                         {
                             Point test = new Point("", new List<Lien>(),false);
                             foreach (Point pt in res)
@@ -106,21 +106,20 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                                 if (l.NomVoisin == pt.NomPoint)
                                 {
                                     test = pt;
+                                    if ( resu[i][k].Statue == test.Statue)
+                                    {
+                                        ++erreur[i];
+                                    }
                                 }
-                            }
-
-                            if (p.Statue == test.Statue)
-                            {
-                                ++erreur[i];
-                            }
+                            }                            
                         }
                     }
 
                     if (i > 1)
                     {
-                        for (int j = 0; j < erreur.Count - 1; j++)
+                        for (int j = 0; j < erreur.Count-1; j++)
                         {
-                            for (int k = 0; k < erreur.Count; k++)
+                            for (int k = 0; k < 1000; k++)
                             {
                                 if (erreur[j] > erreur[j + 1])
                                 {

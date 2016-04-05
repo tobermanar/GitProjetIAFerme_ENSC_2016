@@ -23,7 +23,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             {
                 farm = "Node ";
             }
-            sentence = farm + "Nom : " + _nomPoint + "  ";
+            sentence = farm + "Nom : " + _nomPoint + "  Statue : " + _statue + " " ;
             foreach (Lien voisin in _list_Voisins)
             {
                 sentence += voisin.ToString(); 

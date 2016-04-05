@@ -195,6 +195,9 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             {
                 listBox2.Items.Add(p);
             }
+            listBox1.BeginUpdate();
+            listBox1.DataSource = Monde.List_Points;
+            listBox1.EndUpdate();
         }
     }
 }
