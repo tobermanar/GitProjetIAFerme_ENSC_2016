@@ -49,6 +49,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             this.textQ4 = new System.Windows.Forms.TextBox();
             this.Q4 = new System.Windows.Forms.Label();
             this.button_q4 = new System.Windows.Forms.Button();
+            this.Q5 = new System.Windows.Forms.Label();
+            this.button_q5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_q1
@@ -232,11 +234,32 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             this.button_q4.UseVisualStyleBackColor = true;
             this.button_q4.Click += new System.EventHandler(this.button_q4_Click);
             // 
+            // Q5
+            // 
+            this.Q5.AutoSize = true;
+            this.Q5.Location = new System.Drawing.Point(24, 466);
+            this.Q5.Name = "Q5";
+            this.Q5.Size = new System.Drawing.Size(30, 20);
+            this.Q5.TabIndex = 23;
+            this.Q5.Text = "Q5";
+            // 
+            // button_q5
+            // 
+            this.button_q5.Location = new System.Drawing.Point(58, 461);
+            this.button_q5.Name = "button_q5";
+            this.button_q5.Size = new System.Drawing.Size(131, 31);
+            this.button_q5.TabIndex = 22;
+            this.button_q5.Text = "Statues";
+            this.button_q5.UseVisualStyleBackColor = true;
+            this.button_q5.Click += new System.EventHandler(this.button_q5_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1594, 743);
+            this.Controls.Add(this.Q5);
+            this.Controls.Add(this.button_q5);
             this.Controls.Add(this.textQ4);
             this.Controls.Add(this.Q4);
             this.Controls.Add(this.button_q4);
@@ -282,6 +305,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         private System.Windows.Forms.TextBox textQ4;
         private System.Windows.Forms.Label Q4;
         private System.Windows.Forms.Button button_q4;
+        private System.Windows.Forms.Label Q5;
+        private System.Windows.Forms.Button button_q5;
     }
 }
 

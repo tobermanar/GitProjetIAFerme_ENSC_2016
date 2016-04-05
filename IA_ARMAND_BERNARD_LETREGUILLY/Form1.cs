@@ -262,5 +262,18 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             textQ4.Clear();
             textQ4.ForeColor = Color.Black;
         }
+
+        private void button_q5_Click(object sender, EventArgs e)
+        {
+            /*List<Point> res = Monde.Statue(Monde.List_Points);
+            listBox2.BeginUpdate();
+            listBox2.Items.Add("  Question 5 : ");
+            foreach (Point p in res)
+            {
+                listBox2.Items.Add(p);
+            }
+            listBox2.Items.Add("Fin question 5");
+            listBox2.EndUpdate();*/
+        }
     }
 }
