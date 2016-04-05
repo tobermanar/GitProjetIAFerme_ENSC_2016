@@ -143,7 +143,9 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             }
             q2_alphabetical2.EndUpdate();
             textQ3.ForeColor = Color.Gray;
-            textQ3.Text = "Entrez une liste de points séparés par une virgule";
+            textQ3.Text = "Entrez une liste de points sans espaces séparés par une virgule";
+            textQ4.ForeColor = Color.Gray;
+            textQ4.Text = "Entrez une liste de points sans espaces séparés par une virgule";
         }
 
         private void button_q1_Click(object sender, EventArgs e)
@@ -165,8 +167,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             string param1 = q2_alphabetical1.GetItemText(q2_alphabetical1.SelectedItem);
             string param2 = q2_alphabetical2.GetItemText(q2_alphabetical2.SelectedItem);
             string[] result = Monde.Distance(param1, param2);
-            listBox2.Items.Add("  Question 2 : ");
             listBox2.BeginUpdate();
+            listBox2.Items.Add("  Question 2 : ");
             listBox2.Items.Add("Distance entre " + param1 + " et " + param2 + " = " + result[0]);
             listBox2.Items.Add("Chemin : " + result[1]);
             listBox2.Items.Add("Fin question 2");
@@ -176,6 +178,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         {
             //Gestion du texte de Q3
             //Découpage à chaque virgule
+            string lower = textQ3.Text;
+            textQ3.Text = lower.ToUpper();
             string[] lettresDecoupes = textQ3.Text.Split(',');
             //Vérification pour savoir si il ne s'agit que de lettres
             int  nombreLettresValides = lettresDecoupes.Count();
@@ -191,11 +195,11 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             }
             if (nombreLettresValides == 0)
             {
-                //Ajouter appel a fonction
-                listBox2.Items.Add("  Question 3 : ");
+                //TODO Ajouter appel a fonction
                 listBox2.BeginUpdate();
+                listBox2.Items.Add("  Question 3 : ");
                 // listBox2.Items.Add("Distance entre " + param1 + " et " + param2 + " = " + result[0]);
-                //  listBox2.Items.Add("Chemin : " + result[1]);
+                // listBox2.Items.Add("Chemin : " + result[1]);
                 listBox2.Items.Add("Fin question 3");
                 listBox2.EndUpdate();
             }
@@ -203,6 +207,41 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             {
                 textQ3.Text = "Erreur lors de la saisie, recommencez";
                 textQ3.ForeColor = Color.Red;
+            }
+        }
+        private void button_q4_Click(object sender, EventArgs e)
+        {
+            //Gestion du texte de Q3
+            //Découpage à chaque virgule
+            string lower = textQ4.Text;
+            textQ4.Text = lower.ToUpper();
+            string[] lettresDecoupes = textQ4.Text.Split(',');
+            //Vérification pour savoir si il ne s'agit que de lettres
+            int nombreLettresValides = lettresDecoupes.Count();
+            for (int i = 0; i < lettresDecoupes.Count(); i++)
+            {
+                for (int j = 0; j < 23; j++)
+                {
+                    if (string.Format("{0}", Convert.ToChar('A' + j)) == lettresDecoupes[i])
+                    {
+                        nombreLettresValides--;
+                    }
+                }
+            }
+            if (nombreLettresValides == 0)
+            {
+                //TODO Ajouter appel a fonction
+                listBox2.BeginUpdate();
+                listBox2.Items.Add("  Question 4 : ");
+                // listBox2.Items.Add("Distance entre " + param1 + " et " + param2 + " = " + result[0]);
+                // listBox2.Items.Add("Chemin : " + result[1]);
+                listBox2.Items.Add("Fin question 4");
+                listBox2.EndUpdate();
+            }
+            else
+            {
+                textQ4.Text = "Erreur lors de la saisie, recommencez";
+                textQ4.ForeColor = Color.Red;
             }
         }
         private void button_clear_Click(object sender, EventArgs e)
@@ -216,6 +255,12 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         {
             textQ3.Clear();
             textQ3.ForeColor = Color.Black;
+        }
+
+        private void textQ4_Click(object sender, EventArgs e)
+        {
+            textQ4.Clear();
+            textQ4.ForeColor = Color.Black;
         }
     }
 }

@@ -46,6 +46,9 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             this.Q3 = new System.Windows.Forms.Label();
             this.button_q3 = new System.Windows.Forms.Button();
             this.textQ3 = new System.Windows.Forms.TextBox();
+            this.textQ4 = new System.Windows.Forms.TextBox();
+            this.Q4 = new System.Windows.Forms.Label();
+            this.button_q4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_q1
@@ -192,6 +195,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             this.button_q3.TabIndex = 16;
             this.button_q3.Text = "Plus court circuit";
             this.button_q3.UseVisualStyleBackColor = true;
+            this.button_q3.Click += new System.EventHandler(this.button_q3_Click);
             // 
             // textQ3
             // 
@@ -201,11 +205,41 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             this.textQ3.TabIndex = 18;
             this.textQ3.Click += new System.EventHandler(this.textQ3_Click);
             // 
+            // textQ4
+            // 
+            this.textQ4.Location = new System.Drawing.Point(290, 426);
+            this.textQ4.Name = "textQ4";
+            this.textQ4.Size = new System.Drawing.Size(485, 26);
+            this.textQ4.TabIndex = 21;
+            this.textQ4.Click += new System.EventHandler(this.textQ4_Click);
+            // 
+            // Q4
+            // 
+            this.Q4.AutoSize = true;
+            this.Q4.Location = new System.Drawing.Point(24, 429);
+            this.Q4.Name = "Q4";
+            this.Q4.Size = new System.Drawing.Size(30, 20);
+            this.Q4.TabIndex = 20;
+            this.Q4.Text = "Q4";
+            // 
+            // button_q4
+            // 
+            this.button_q4.Location = new System.Drawing.Point(58, 424);
+            this.button_q4.Name = "button_q4";
+            this.button_q4.Size = new System.Drawing.Size(226, 31);
+            this.button_q4.TabIndex = 19;
+            this.button_q4.Text = "Plus court circuit + Contrainte";
+            this.button_q4.UseVisualStyleBackColor = true;
+            this.button_q4.Click += new System.EventHandler(this.button_q4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1594, 743);
+            this.Controls.Add(this.textQ4);
+            this.Controls.Add(this.Q4);
+            this.Controls.Add(this.button_q4);
             this.Controls.Add(this.textQ3);
             this.Controls.Add(this.Q3);
             this.Controls.Add(this.button_q3);
@@ -245,6 +279,9 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         private System.Windows.Forms.Label Q3;
         private System.Windows.Forms.Button button_q3;
         private System.Windows.Forms.TextBox textQ3;
+        private System.Windows.Forms.TextBox textQ4;
+        private System.Windows.Forms.Label Q4;
+        private System.Windows.Forms.Button button_q4;
     }
 }
 
