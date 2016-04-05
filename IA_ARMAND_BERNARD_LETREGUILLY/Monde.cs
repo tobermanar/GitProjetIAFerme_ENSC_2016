@@ -87,11 +87,12 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 for (int i = 0; i < 1000; i++)
                 {
                     erreur.Add(0);
-                    resu.Add(res);                    
+                    resu.Add(res);
 
+                    Random r = new Random();
+                    
                     for (int k = 0; k < 23; k++)
-                    {
-                        Random r = new Random();
+                    {                                                
                         int R = r.Next(1, 4);
                         resu[i][k].Statue = R;
                     }
@@ -117,16 +118,16 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
                     if (i > 1)
                     {
-                        for (int j = 0; j < erreur.Count-1; j++)
+                        for (int u = 0; u < 1000; u++)
                         {
-                            for (int k = 0; k < 1000; k++)
+                            for (int j = 0; j < erreur.Count - 1; j++)
                             {
                                 if (erreur[j] > erreur[j + 1])
                                 {
                                     erreur.Reverse(j, 2);
                                     resu.Reverse(j, 2);
                                 }
-                            }
+                            }   
                         }
                     }
                     else
@@ -139,25 +140,49 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             else
             {
                 List<int> erreur = new List<int>();
-                for (int i = 0; i < 1000; i++)
+                resu.Add(res);
+                int cmpt=0;
+
+                for (int k = 0; k < 23; k++)
+                {
+                    foreach (Lien l in res[k].List_Voisins)
+                    {
+                        Point test = new Point("", new List<Lien>(), false);
+                        foreach (Point pt in res)
+                        {
+                            if (l.NomVoisin == pt.NomPoint)
+                            {
+                                test = pt;
+                                if (resu[0][k].Statue == test.Statue)
+                                {
+                                    ++cmpt;
+                                }
+                            }
+                        }
+                    }
+                }
+                erreur.Add(cmpt);
+
+                for (int i = 1; i < 1000; i++)
                 {
                     erreur.Add(0);
-                    resu.Add(new List<Point>());
-                    foreach (Point p in res)
+                    resu.Add(res);
+                    Random c = new Random();
+                    Random r = new Random();
+
+                    for (int k = 0; k < 23; k++)
                     {
-                        Random c = new Random();
                         int C = c.Next(1, 6);
                         if (C == 1)
                         {
-                            Random r = new Random();
                             int R = r.Next(1, 4);
-                            p.Statue = R;
+                            resu[i][k].Statue = R;
                         }
                     }
-                    
-                    foreach (Point p in res)
-                    {                        
-                        foreach (Lien l in p.List_Voisins)
+
+                    for (int k = 0; k < 23; k++)
+                    {
+                        foreach (Lien l in res[k].List_Voisins)
                         {
                             Point test = new Point("", new List<Lien>(), false);
                             foreach (Point pt in res)
@@ -165,21 +190,20 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                                 if (l.NomVoisin == pt.NomPoint)
                                 {
                                     test = pt;
+                                    if (resu[i][k].Statue == test.Statue)
+                                    {
+                                        ++erreur[i];
+                                    }
                                 }
-                            }
-
-                            if (p.Statue == test.Statue)
-                            {
-                                ++erreur[i];
                             }
                         }
                     }
 
                     if (i > 1)
                     {
-                        for (int j = 0; j < erreur.Count - 1; j++)
+                        for (int u = 0; u < 1000; u++)
                         {
-                            for (int k = 0; k < erreur.Count; k++)
+                            for (int j = 0; j < erreur.Count - 1; j++)
                             {
                                 if (erreur[j] > erreur[j + 1])
                                 {
