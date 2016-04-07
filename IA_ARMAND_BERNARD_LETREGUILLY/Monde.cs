@@ -87,11 +87,11 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 for (int i = 0; i < 1000; i++)
                 {
                     erreur.Add(0);
-                    resu.Add(res);                    
+                    resu.Add(res);
+                    Random r = new Random();
 
                     for (int k = 0; k < 23; k++)
-                    {
-                        Random r = new Random();
+                    {                        
                         int R = r.Next(1, 4);
                         resu[i][k].Statue = R;
                     }
@@ -143,13 +143,15 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 {
                     erreur.Add(0);
                     resu.Add(new List<Point>());
+
+                    Random c = new Random();
+                    Random r = new Random();
+
                     foreach (Point p in res)
-                    {
-                        Random c = new Random();
+                    {                       
                         int C = c.Next(1, 6);
                         if (C == 1)
-                        {
-                            Random r = new Random();
+                        {                            
                             int R = r.Next(1, 4);
                             p.Statue = R;
                         }
