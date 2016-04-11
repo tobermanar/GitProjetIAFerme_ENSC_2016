@@ -139,7 +139,29 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             else
             {
                 List<int> erreur = new List<int>();
-                for (int i = 0; i < 1000; i++)
+                resu.Add(res);
+                erreur.Add(0);
+
+                foreach (Point p in res)
+                {
+                    foreach (Lien l in p.List_Voisins)
+                    {
+                        Point test = new Point("", new List<Lien>(), false);
+                        foreach (Point pt in res)
+                        {
+                            if (l.NomVoisin == pt.NomPoint)
+                            {
+                                test = pt;
+                            }
+                        }
+
+                        if (p.Statue == test.Statue)
+                        {
+                            ++erreur[0];
+                        }
+                    }
+                }
+                for (int i = 1; i < 1000; i++)
                 {
                     erreur.Add(0);
                     resu.Add(new List<Point>());
