@@ -191,7 +191,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         private void button1_Click(object sender, EventArgs e)
         {
             listBox2.Items.Clear(); 
-            List<Point> res = Monde.Statue(Monde.List_Points);
+            List<Point> res = Monde.List_Points;
+            Monde.Statue(res);
             foreach (Point p in res)
             {
                 listBox2.Items.Add(p);

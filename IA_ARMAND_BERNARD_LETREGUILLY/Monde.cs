@@ -99,15 +99,15 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
                     for (int k = 0; k < 23; k++)
                     {
-                        foreach (Lien l in res[k].List_Voisins)
+                        foreach (Lien l in resu[i][k].List_Voisins)
                         {
                             Point test = new Point("", new List<Lien>(),false);
-                            foreach (Point pt in res)
+                            foreach (Point pt in resu[i])
                             {
                                 if (l.NomVoisin == pt.NomPoint)
                                 {
                                     test = pt;
-                                    if ( resu[i][k].Statue == test.Statue)
+                                    if (resu[i][k].Statue == test.Statue)
                                     {
                                         ++erreur[i];
                                     }
@@ -115,6 +115,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                             }                            
                         }
                     }
+
+                    erreur[i] = erreur[i] / 2;
 
                     if (i > 1)
                     {
@@ -129,38 +131,36 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                                 }
                             }   
                         }
-                    }
-                    else
-                    {
-                        resu[i] = res;
-                    }
+                    }                  
                 }
             }
 
             else
             {
                 List<int> erreur = new List<int>();
-                resu.Add(res);
+                resu.Add(new List<Point>());
+                resu[0]=res;
                 int cmpt=0;
 
                 for (int k = 0; k < 23; k++)
                 {
-                    foreach (Lien l in res[k].List_Voisins)
+                    foreach (Lien l in resu[0][k].List_Voisins)
                     {
                         Point test = new Point("", new List<Lien>(), false);
-                        foreach (Point pt in res)
+                        foreach (Point pt in resu[0])
                         {
                             if (l.NomVoisin == pt.NomPoint)
                             {
                                 test = pt;
                                 if (resu[0][k].Statue == test.Statue)
-                                {
+                                 {
                                     ++cmpt;
                                 }
                             }
                         }
                     }
                 }
+                cmpt = cmpt / 2;
                 erreur.Add(cmpt);
 
                 for (int i = 1; i < 1000; i++)
@@ -182,10 +182,10 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
                     for (int k = 0; k < 23; k++)
                     {
-                        foreach (Lien l in res[k].List_Voisins)
+                        foreach (Lien l in resu[i][k].List_Voisins)
                         {
                             Point test = new Point("", new List<Lien>(), false);
-                            foreach (Point pt in res)
+                            foreach (Point pt in resu[i])
                             {
                                 if (l.NomVoisin == pt.NomPoint)
                                 {
@@ -199,6 +199,9 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                         }
                     }
 
+                    erreur[i] = erreur[i] / 2;
+
+
                     if (i > 1)
                     {
                         for (int u = 0; u < 1000; u++)
@@ -207,16 +210,12 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                             {
                                 if (erreur[j] > erreur[j + 1])
                                 {
-                                    erreur.Reverse(j, 2);
+                                    erreur.Reverse(j, 2);   
                                     resu.Reverse(j, 2);
                                 }
                             }
                         }
-                    }
-                    else
-                    {
-                        resu[i] = res;
-                    }
+                    }                   
                 }
             }
             return resu[0];
