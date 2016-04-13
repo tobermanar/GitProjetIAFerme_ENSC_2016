@@ -51,6 +51,10 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             this.button_q4 = new System.Windows.Forms.Button();
             this.Q5 = new System.Windows.Forms.Label();
             this.button_q5 = new System.Windows.Forms.Button();
+            this.q5_label = new System.Windows.Forms.Label();
+            this.q5b_label = new System.Windows.Forms.Label();
+            this.Q5b = new System.Windows.Forms.Label();
+            this.button_q5b = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_q1
@@ -253,11 +257,52 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             this.button_q5.UseVisualStyleBackColor = true;
             this.button_q5.Click += new System.EventHandler(this.button_q5_Click);
             // 
+            // q5_label
+            // 
+            this.q5_label.AutoSize = true;
+            this.q5_label.Location = new System.Drawing.Point(195, 466);
+            this.q5_label.Name = "q5_label";
+            this.q5_label.Size = new System.Drawing.Size(327, 20);
+            this.q5_label.TabIndex = 24;
+            this.q5_label.Text = "Appuyez jusqu\'a qu\'il ne reste plus de conflits";
+            // 
+            // q5b_label
+            // 
+            this.q5b_label.AutoSize = true;
+            this.q5b_label.Location = new System.Drawing.Point(195, 503);
+            this.q5b_label.Name = "q5b_label";
+            this.q5b_label.Size = new System.Drawing.Size(387, 20);
+            this.q5b_label.TabIndex = 28;
+            this.q5b_label.Text = "Deuxième version sans gestion du nombre de statues";
+            // 
+            // Q5b
+            // 
+            this.Q5b.AutoSize = true;
+            this.Q5b.Location = new System.Drawing.Point(24, 503);
+            this.Q5b.Name = "Q5b";
+            this.Q5b.Size = new System.Drawing.Size(39, 20);
+            this.Q5b.TabIndex = 27;
+            this.Q5b.Text = "Q5b";
+            // 
+            // button_q5b
+            // 
+            this.button_q5b.Location = new System.Drawing.Point(58, 498);
+            this.button_q5b.Name = "button_q5b";
+            this.button_q5b.Size = new System.Drawing.Size(131, 31);
+            this.button_q5b.TabIndex = 29;
+            this.button_q5b.Text = "Statues bis";
+            this.button_q5b.UseVisualStyleBackColor = true;
+            this.button_q5b.Click += new System.EventHandler(this.button_q5b_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1594, 743);
+            this.Controls.Add(this.button_q5b);
+            this.Controls.Add(this.q5b_label);
+            this.Controls.Add(this.Q5b);
+            this.Controls.Add(this.q5_label);
             this.Controls.Add(this.Q5);
             this.Controls.Add(this.button_q5);
             this.Controls.Add(this.textQ4);
@@ -307,6 +352,10 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         private System.Windows.Forms.Button button_q4;
         private System.Windows.Forms.Label Q5;
         private System.Windows.Forms.Button button_q5;
+        private System.Windows.Forms.Label q5_label;
+        private System.Windows.Forms.Label q5b_label;
+        private System.Windows.Forms.Label Q5b;
+        private System.Windows.Forms.Button button_q5b;
     }
 }
 

@@ -45,6 +45,11 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             get { return _statue; }
             set { _statue = value; }
         }
+        public bool Ferme
+        {
+            get { return _ferme; }
+            set { _ferme = value; }
+        }
         public List<Lien> List_Voisins
         {
             get { return _list_Voisins; }
@@ -59,6 +64,18 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 this._list_Voisins.Add(l);
             }
             this._ferme = ferme;
+        }
+        public Point(string nom, List<Lien> voisins, int statue, bool ferme = false)
+        {
+            this._nomPoint = nom;
+            this._list_Voisins = new List<Lien>();
+            foreach (Lien l in voisins)
+            {
+                this._list_Voisins.Add(l);
+            }
+
+            this._ferme = ferme;
+            this._statue = statue;
         }
     }
 }

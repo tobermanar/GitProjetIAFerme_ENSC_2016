@@ -65,7 +65,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             }
             return trouve;
         }
-
         public static List<Point> Statue(List<Point> M)
         {
             List<Point> res = new List<Point>();
@@ -77,39 +76,43 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 List<int> erreur = new List<int>();
                 for (int i = 0; i < 1000; i++)
                 {
-                    foreach (Point p in res)
+                    erreur.Add(0);
+                    resu.Add(new List<Point>());
+
+                    Random r = new Random();
+
+                    for (int k = 0; k < 23; k++)
                     {
-                        Random r = new Random();
-                        r.Next(1, 4);
-                        p.Statue = Convert.ToInt32(r);
+                        int R = r.Next(1, 4);
+                        resu[i].Add(new Point(res[k].NomPoint, res[k].List_Voisins, R, res[k].Ferme));
                     }
 
-                    foreach (Point p in res)
+                    for (int k = 0; k < 23; k++)
                     {
-
-                        foreach (Lien l in p.List_Voisins)
+                        foreach (Lien l in resu[i][k].List_Voisins)
                         {
-                            Point test = new Point("", null);
-                            foreach (Point pt in res)
+                            Point test = new Point("", new List<Lien>(), false);
+                            foreach (Point pt in resu[i])
                             {
                                 if (l.NomVoisin == pt.NomPoint)
                                 {
                                     test = pt;
+                                    if (resu[i][k].Statue == test.Statue)
+                                    {
+                                        ++erreur[i];
+                                    }
                                 }
-                            }
-
-                            if (p.Statue == test.Statue)
-                            {
-                                ++erreur[i];
                             }
                         }
                     }
 
+                    erreur[i] = erreur[i] / 2;
+
                     if (i > 1)
                     {
-                        for (int j = 0; j < erreur.Count - 1; j++)
+                        for (int u = 0; u < 1000; u++)
                         {
-                            for (int k = 0; k < erreur.Count; k++)
+                            for (int j = 0; j < erreur.Count - 1; j++)
                             {
                                 if (erreur[j] > erreur[j + 1])
                                 {
@@ -118,10 +121,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                                 }
                             }
                         }
-                    }
-                    else
-                    {
-                        resu[i] = res;
                     }
                 }
             }
@@ -129,45 +128,59 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             else
             {
                 List<int> erreur = new List<int>();
-                for (int i = 0; i < 1000; i++)
+
+                resu.Add(M);
+                int cmpt = ErStatue(M);
+                erreur.Add(cmpt);
+
+                for (int i = 1; i < 1000; i++)
                 {
-                    foreach (Point p in res)
+                    erreur.Add(0);
+                    resu.Add(new List<Point>());
+                    for (int k = 0; k < 23; k++)
                     {
-                        Random c = new Random();
-                        c.Next(1, 6);
-                        if (Convert.ToInt32(c) == 1)
+                        resu[i].Add(new Point(res[k].NomPoint, res[k].List_Voisins, res[k].Statue, res[k].Ferme));
+                    }
+                    Random c = new Random();
+                    Random r = new Random();
+
+                    for (int k = 0; k < 23; k++)
+                    {
+                        int C = c.Next(1, 6);
+                        if (C == 1)
                         {
-                            Random r = new Random();
-                            r.Next(1, 4);
-                            p.Statue = Convert.ToInt32(r);
+                            int R = r.Next(1, 4);
+                            resu[i][k].Statue = R;
                         }
                     }
 
-                    foreach (Point p in res)
+                    for (int k = 0; k < 23; k++)
                     {
-                        foreach (Lien l in p.List_Voisins)
+                        foreach (Lien l in resu[i][k].List_Voisins)
                         {
-                            Point test = new Point("", null);
-                            foreach (Point pt in res)
+                            Point test = new Point("", new List<Lien>(), false);
+                            foreach (Point pt in resu[i])
                             {
                                 if (l.NomVoisin == pt.NomPoint)
                                 {
                                     test = pt;
+                                    if (resu[i][k].Statue == test.Statue)
+                                    {
+                                        ++erreur[i];
+                                    }
                                 }
-                            }
-
-                            if (p.Statue == test.Statue)
-                            {
-                                ++erreur[i];
                             }
                         }
                     }
 
+                    erreur[i] = erreur[i] / 2;
+
+
                     if (i > 1)
                     {
-                        for (int j = 0; j < erreur.Count - 1; j++)
+                        for (int u = 0; u < 1000; u++)
                         {
-                            for (int k = 0; k < erreur.Count; k++)
+                            for (int j = 0; j < erreur.Count - 1; j++)
                             {
                                 if (erreur[j] > erreur[j + 1])
                                 {
@@ -177,13 +190,269 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                             }
                         }
                     }
-                    else
+                }
+            }
+
+            return resu[0];
+
+        }
+
+        public static int ErStatue(List<Point> M)
+        {
+            List<Point> res = new List<Point>();
+            res = M;
+
+            int cmpt = 0, cmpt1 = 0, cmpt2 = 0, cmpt3 = 0;
+            for (int k = 0; k < 23; k++)
+            {
+                if(res[k].Statue == 1)
+                {
+                    cmpt1++;
+                }
+                else if(res[k].Statue == 2)
+                {
+                    cmpt2++;
+                }
+                else if (res[k].Statue == 3)
+                {
+                    cmpt3++;
+                }
+                foreach (Lien l in res[k].List_Voisins)
+                {
+                    Point test = new Point("", new List<Lien>(), false);
+                    foreach (Point pt in res)
                     {
-                        resu[i] = res;
+                        if (l.NomVoisin == pt.NomPoint)
+                        {
+                            test = pt;
+                            if (res[k].Statue == test.Statue)
+                            {
+                                ++cmpt;
+                            }
+                        }
                     }
                 }
             }
+            cmpt = cmpt / 2;
+            if (cmpt1 > 8)
+            {
+                cmpt++;
+            }
+            if (cmpt2 > 8)
+            {
+                cmpt++;
+            }
+            if (cmpt3 > 8)
+            {
+                cmpt++;
+            }
+            return cmpt;
+        }
+
+        public static List<Point> Statue2(List<Point> M)
+        {
+            List<Point> res = new List<Point>();
+            res = M;
+            List<List<Point>> resu = new List<List<Point>>();
+
+            if (res[0].Statue == 0)
+            {
+                List<int> erreur = new List<int>();
+                for (int i = 0; i < 1000; i++)
+                {
+                    erreur.Add(0);
+                    resu.Add(new List<Point>());
+
+                    Random r = new Random();
+
+                    for (int k = 0; k < 23; k++)
+                    {
+                        int R = r.Next(1, 4);
+                        resu[i].Add(new Point(res[k].NomPoint, res[k].List_Voisins, R, res[k].Ferme));
+                    }
+
+                    for (int k = 0; k < 23; k++)
+                    {
+                        foreach (Lien l in resu[i][k].List_Voisins)
+                        {
+                            Point test = new Point("", new List<Lien>(), false);
+                            foreach (Point pt in resu[i])
+                            {
+                                if (l.NomVoisin == pt.NomPoint)
+                                {
+                                    test = pt;
+                                    if (resu[i][k].Statue == test.Statue)
+                                    {
+                                        ++erreur[i];
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    erreur[i] = erreur[i] / 2;
+
+                    if (i > 1)
+                    {
+                        for (int u = 0; u < 1000; u++)
+                        {
+                            for (int j = 0; j < erreur.Count - 1; j++)
+                            {
+                                if (erreur[j] > erreur[j + 1])
+                                {
+                                    erreur.Reverse(j, 2);
+                                    resu.Reverse(j, 2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            else
+            {
+                List<int> erreur = new List<int>();
+
+                resu.Add(M);
+                int cmpt = ErStatue2(M);
+                erreur.Add(cmpt);
+
+                for (int i = 1; i < 1000; i++)
+                {
+                    erreur.Add(0);
+                    resu.Add(new List<Point>());
+                    for (int k = 0; k < 23; k++)
+                    {
+                        resu[i].Add(new Point(res[k].NomPoint, res[k].List_Voisins, res[k].Statue, res[k].Ferme));
+                    }
+                    Random c = new Random();
+                    Random r = new Random();
+
+                    for (int k = 0; k < 23; k++)
+                    {
+                        int C = c.Next(1, 6);
+                        if (C == 1)
+                        {
+                            int R = r.Next(1, 4);
+                            resu[i][k].Statue = R;
+                        }
+                    }
+
+                    for (int k = 0; k < 23; k++)
+                    {
+                        foreach (Lien l in resu[i][k].List_Voisins)
+                        {
+                            Point test = new Point("", new List<Lien>(), false);
+                            foreach (Point pt in resu[i])
+                            {
+                                if (l.NomVoisin == pt.NomPoint)
+                                {
+                                    test = pt;
+                                    if (resu[i][k].Statue == test.Statue)
+                                    {
+                                        ++erreur[i];
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    erreur[i] = erreur[i] / 2;
+
+
+                    if (i > 1)
+                    {
+                        for (int u = 0; u < 1000; u++)
+                        {
+                            for (int j = 0; j < erreur.Count - 1; j++)
+                            {
+                                if (erreur[j] > erreur[j + 1])
+                                {
+                                    erreur.Reverse(j, 2);
+                                    resu.Reverse(j, 2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             return resu[0];
+
+        }
+
+        public static int ErStatue2(List<Point> M)
+        {
+            List<Point> res = new List<Point>();
+            res = M;
+            int cmpt = 0;
+            for (int k = 0; k < 23; k++)
+            {
+                foreach (Lien l in res[k].List_Voisins)
+                {
+                    Point test = new Point("", new List<Lien>(), false);
+                    foreach (Point pt in res)
+                    {
+                        if (l.NomVoisin == pt.NomPoint)
+                        {
+                            test = pt;
+                            if (res[k].Statue == test.Statue)
+                            {
+                                ++cmpt;
+                            }
+                        }
+                    }
+                }
+            }
+            cmpt = cmpt / 2;
+            return cmpt;
+        }
+
+        public static void NbStatues()
+        {
+            int compteur_statue = 0;
+            List<Point> permut = new List<Point>();
+            foreach (Point p in List_Points)
+            {
+                if (p.Statue == 3) compteur_statue++;
+            }
+            if (compteur_statue == 8)
+            {
+                compteur_statue = 0;
+                foreach (Point p in List_Points)
+                {
+                    if (p.Statue == 2) compteur_statue++;
+                }
+                if (compteur_statue == 7)
+                {
+                    foreach (Point p in List_Points)
+                    {
+                        if (p.Statue == 3)
+                        {
+                            p.Statue = 2;
+                        }
+                        else if (p.Statue == 2)
+                        {
+                            p.Statue = 3;
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (Point p in List_Points)
+                    {
+                        if (p.Statue == 3)
+                        {
+                            p.Statue = 1;
+                        }
+                        else if (p.Statue == 1)
+                        {
+                            p.Statue = 3;
+                        }
+                    }
+                }
+                
+            }
         }
     }
 }
