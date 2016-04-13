@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace IA_ARMAND_BERNARD_LETREGUILLY
 {
     public partial class Form1 : Form
     {
+        int q5_iteration = 0;
         public Form1()
         {
             InitializeComponent();
@@ -249,6 +251,11 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             listBox2.BeginUpdate();
             listBox2.Items.Clear();
             listBox2.EndUpdate();
+            q5_iteration = 0;
+            foreach (Point p in Monde.List_Points)
+            {
+                p.Statue = 0;
+            }
         }
 
         private void textQ3_Click(object sender, EventArgs e)
@@ -265,15 +272,46 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
         private void button_q5_Click(object sender, EventArgs e)
         {
-            /*List<Point> res = Monde.Statue(Monde.List_Points);
-            listBox2.BeginUpdate();
-            listBox2.Items.Add("  Question 5 : ");
-            foreach (Point p in res)
+            if (Monde.ErStatue(Monde.List_Points) != 0)
             {
-                listBox2.Items.Add(p);
+                q5_label.Text = "En cours de calcul";
+                q5_label.Refresh();
+                q5_iteration++;
+                List<Point> res = Monde.Statue(Monde.List_Points);
+                Monde.List_Points = res;
+                Monde.NbStatues();
+                listBox2.BeginUpdate();
+                listBox2.Items.Add("  Question 5 : ");
+                foreach (Point p in Monde.List_Points)
+                {
+                    listBox2.Items.Add(p);
+                }
+                listBox2.Items.Add("Itération n°" + q5_iteration);
+                listBox2.Items.Add("Fin question 5");
+                listBox2.EndUpdate();
+                q5_label.Text = "Nombre de conflits : " + Monde.ErStatue(Monde.List_Points).ToString();
             }
-            listBox2.Items.Add("Fin question 5");
-            listBox2.EndUpdate();*/
+        }
+        private void button_q5b_Click(object sender, EventArgs e)
+        {
+            if (Monde.ErStatue(Monde.List_Points) != 0)
+            {
+                q5b_label.Text = "En cours de calcul";
+                q5b_label.Refresh();
+                q5_iteration++;
+                List<Point> res = Monde.Statue2(Monde.List_Points);
+                Monde.List_Points = res;
+                listBox2.BeginUpdate();
+                listBox2.Items.Add("  Question 5 : ");
+                foreach (Point p in Monde.List_Points)
+                {
+                    listBox2.Items.Add(p);
+                }
+                listBox2.Items.Add("Itération n°" + q5_iteration);
+                listBox2.Items.Add("Fin question 5");
+                listBox2.EndUpdate();
+                q5b_label.Text = "Nombre de conflits : " + Monde.ErStatue(Monde.List_Points).ToString();
+            }
         }
     }
 }
