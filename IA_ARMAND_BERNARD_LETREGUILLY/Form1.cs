@@ -190,9 +190,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
         private void button1_Click(object sender, EventArgs e)
         {
-            listBox2.Items.Clear(); 
-            List<Point> res = Monde.List_Points;
-            Monde.Statue(res);
+            listBox2.Items.Clear();
+            List<Point> res = Monde.Statue(Monde.List_Points);
             foreach (Point p in res)
             {
                 listBox2.Items.Add(p);
@@ -201,6 +200,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             listBox1.BeginUpdate();
             listBox1.DataSource = Monde.List_Points;
             listBox1.EndUpdate();
+            label3.Text = Monde.ErStatue(Monde.List_Points).ToString();
         }
     }
 }

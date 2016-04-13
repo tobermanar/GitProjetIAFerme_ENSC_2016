@@ -41,12 +41,13 @@
             this.Q1 = new System.Windows.Forms.Label();
             this.Q2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button_q1
             // 
             this.button_q1.Location = new System.Drawing.Point(39, 203);
-            this.button_q1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_q1.Margin = new System.Windows.Forms.Padding(2);
             this.button_q1.Name = "button_q1";
             this.button_q1.Size = new System.Drawing.Size(87, 20);
             this.button_q1.TabIndex = 0;
@@ -76,7 +77,7 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(8, 27);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(517, 147);
             this.listBox1.TabIndex = 3;
@@ -86,7 +87,7 @@
             // 
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(539, 27);
-            this.listBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox2.Margin = new System.Windows.Forms.Padding(2);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(517, 147);
             this.listBox2.TabIndex = 5;
@@ -94,7 +95,7 @@
             // button_q2
             // 
             this.button_q2.Location = new System.Drawing.Point(39, 227);
-            this.button_q2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_q2.Margin = new System.Windows.Forms.Padding(2);
             this.button_q2.Name = "button_q2";
             this.button_q2.Size = new System.Drawing.Size(105, 20);
             this.button_q2.TabIndex = 7;
@@ -125,7 +126,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(148, 227);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(312, 22);
@@ -136,7 +137,7 @@
             // button_clear
             // 
             this.button_clear.Location = new System.Drawing.Point(539, 176);
-            this.button_clear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_clear.Margin = new System.Windows.Forms.Padding(2);
             this.button_clear.Name = "button_clear";
             this.button_clear.Size = new System.Drawing.Size(87, 20);
             this.button_clear.TabIndex = 11;
@@ -174,11 +175,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(148, 261);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "label3";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1169, 483);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Q2);
             this.Controls.Add(this.Q1);
@@ -190,7 +201,7 @@
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button_q1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load_1);
@@ -214,6 +225,7 @@
         private System.Windows.Forms.Label Q1;
         private System.Windows.Forms.Label Q2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label3;
     }
 }
 

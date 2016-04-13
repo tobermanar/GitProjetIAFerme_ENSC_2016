@@ -68,5 +68,18 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
             this._ferme = ferme;
         }
+
+        public Point(string nom, List<Lien> voisins, int statue, bool ferme = false)
+        {
+            this._nomPoint = nom;
+            this._list_Voisins = new List<Lien>();
+            foreach (Lien l in voisins)
+            {
+                this._list_Voisins.Add(l);
+            }
+
+            this._ferme = ferme;
+            this._statue = statue;
+        }
     }
 }

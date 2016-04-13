@@ -87,22 +87,14 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 for (int i = 0; i < 1000; i++)
                 {
                     erreur.Add(0);
-                    resu.Add(res);
-<<<<<<< HEAD
-=======
-                    Random r = new Random();
->>>>>>> origin/J2
-
-                    Random r = new Random();
+                    resu.Add(new List<Point>());
                     
+                    Random r = new Random();
+
                     for (int k = 0; k < 23; k++)
-<<<<<<< HEAD
-                    {                                                
-=======
-                    {                        
->>>>>>> origin/J2
+                    {
                         int R = r.Next(1, 4);
-                        resu[i][k].Statue = R;
+                        resu[i].Add(new Point(res[k].NomPoint, res[k].List_Voisins, R, res[k].Ferme));                      
                     }
 
                     for (int k = 0; k < 23; k++)
@@ -140,54 +132,25 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                             }   
                         }
                     }                  
-                }
+                }                              
             }
 
             else
             {
                 List<int> erreur = new List<int>();
-<<<<<<< HEAD
-                resu.Add(new List<Point>());
-                resu[0]=res;
-                int cmpt=0;
 
-                for (int k = 0; k < 23; k++)
-                {
-                    foreach (Lien l in resu[0][k].List_Voisins)
-                    {
-                        Point test = new Point("", new List<Lien>(), false);
-                        foreach (Point pt in resu[0])
-=======
-                resu.Add(res);
-                erreur.Add(0);
-
-                foreach (Point p in res)
-                {
-                    foreach (Lien l in p.List_Voisins)
-                    {
-                        Point test = new Point("", new List<Lien>(), false);
-                        foreach (Point pt in res)
->>>>>>> origin/J2
-                        {
-                            if (l.NomVoisin == pt.NomPoint)
-                            {
-                                test = pt;
-<<<<<<< HEAD
-                                if (resu[0][k].Statue == test.Statue)
-                                 {
-                                    ++cmpt;
-                                }
-                            }
-                        }
-                    }
-                }
-                cmpt = cmpt / 2;
+                resu.Add(M);
+                int cmpt = ErStatue(M);
                 erreur.Add(cmpt);
 
                 for (int i = 1; i < 1000; i++)
                 {
                     erreur.Add(0);
-                    resu.Add(res);
+                    resu.Add(new List<Point>());
+                    for (int k = 0; k < 23; k++)
+                    {                        
+                        resu[i].Add(new Point(res[k].NomPoint, res[k].List_Voisins,res[k].Statue, res[k].Ferme));
+                    }
                     Random c = new Random();
                     Random r = new Random();
 
@@ -196,30 +159,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                         int C = c.Next(1, 6);
                         if (C == 1)
                         {
-=======
-                            }
-                        }
-
-                        if (p.Statue == test.Statue)
-                        {
-                            ++erreur[0];
-                        }
-                    }
-                }
-                for (int i = 1; i < 1000; i++)
-                {
-                    erreur.Add(0);
-                    resu.Add(new List<Point>());
-
-                    Random c = new Random();
-                    Random r = new Random();
-
-                    foreach (Point p in res)
-                    {                       
-                        int C = c.Next(1, 6);
-                        if (C == 1)
-                        {                            
->>>>>>> origin/J2
                             int R = r.Next(1, 4);
                             resu[i][k].Statue = R;
                         }
@@ -263,7 +202,38 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                     }                   
                 }
             }
-            return resu[0];
+
+            return resu[0];            
+           
+        }
+
+        public static int ErStatue(List<Point> M)
+        {
+            List<Point> res = new List<Point>();
+            res = M;
+                               
+            int cmpt = 0;
+
+            for (int k = 0; k < 23; k++)
+            {
+                foreach (Lien l in res[k].List_Voisins)
+                {
+                    Point test = new Point("", new List<Lien>(), false);
+                    foreach (Point pt in res)
+                    {
+                        if (l.NomVoisin == pt.NomPoint)
+                        {
+                            test = pt;
+                            if (res[k].Statue == test.Statue)
+                            {
+                                ++cmpt;
+                            }
+                        }
+                    }
+                }
+            }         
+            cmpt = cmpt / 2;    
+            return cmpt;
         }
 
         public static Point findPointNode(GenericNode node)
