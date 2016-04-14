@@ -197,12 +197,11 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             }
             if (nombreLettresValides == 0)
             {
-
-                string[] result = NodeChemin.TrouveChemin(lettresDecoupes);
+                //TODO Ajouter appel a fonction
                 listBox2.BeginUpdate();
                 listBox2.Items.Add("  Question 3 : ");
-                listBox2.Items.Add("Distance entre " + lettresDecoupes[0] + " et " + lettresDecoupes.Last() + " = " + result[0]);
-                listBox2.Items.Add("Chemin : " + result[1]);
+                // listBox2.Items.Add("Distance entre " + param1 + " et " + param2 + " = " + result[0]);
+                // listBox2.Items.Add("Chemin : " + result[1]);
                 listBox2.Items.Add("Fin question 3");
                 listBox2.EndUpdate();
             }
