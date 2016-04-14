@@ -67,9 +67,5 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             if (!pointNode.Equals(null)) return pointNode;
             else throw new Exception("il n'y a pas de point correspondant à ce nom");
         }
-        public override string GetID()
-        {
-            return this.GetNom();
-        }
     }
 }

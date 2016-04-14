@@ -93,6 +93,5 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         public abstract bool EndState(string NomPointFin);
         public abstract List<GenericNode> GetListSucc();
         public abstract void CalculeHCost();
-        public abstract string GetID();
     }
 }

@@ -20,4 +20,3 @@ C:\Users\Utilisateur\Desktop\ENSC\2A\IA\Projet\Git\GitProjetIAFerme_ENSC_2016\IA
 C:\Users\Utilisateur\Desktop\ENSC\2A\IA\Projet\Git\GitProjetIAFerme_ENSC_2016\IA_ARMAND_BERNARD_LETREGUILLY\bin\Debug\IA_ARMAND_BERNARD_LETREGUILLY.exe
 C:\Users\Utilisateur\Desktop\ENSC\2A\IA\Projet\Git\GitProjetIAFerme_ENSC_2016\IA_ARMAND_BERNARD_LETREGUILLY\bin\Debug\IA_ARMAND_BERNARD_LETREGUILLY.pdb
 C:\Users\Utilisateur\Desktop\ENSC\2A\IA\Projet\Git\GitProjetIAFerme_ENSC_2016\IA_ARMAND_BERNARD_LETREGUILLY\obj\x86\Debug\IA_ARMAND_BERNARD_LETREGUILLY.Form1.resources
-C:\Users\antoine\Documents\GitHub\GitProjetIAFerme_ENSC_2016\IA_ARMAND_BERNARD_LETREGUILLY\obj\x86\Debug\IA_ARMAND_BERNARD_LETREGUILLY.Form1.resources
