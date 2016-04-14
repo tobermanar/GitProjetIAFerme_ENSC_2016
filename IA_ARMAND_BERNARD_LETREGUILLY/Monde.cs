@@ -453,6 +453,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 }
                 
             }
-        }
-    }
+        }//end of NbStatues
+    }// end of class
 }
