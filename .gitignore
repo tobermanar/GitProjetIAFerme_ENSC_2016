@@ -9,3 +9,5 @@
 *.Cache
 *.suo
 *.suo
+*.suo
+*.pdb
