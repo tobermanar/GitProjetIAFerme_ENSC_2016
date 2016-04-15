@@ -10,6 +10,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         public static List<Point> Laiteries;
         public static List<string> cheminsLaiteries; //sert à stocker les chemins les plus courts entre les laiteries
         /* vérifie que l'algorthme est passé par la totalité des laiteries*/
+        public static bool Refill = false;
         public override bool EndState(string NomPointFin)
         {
             foreach (Point Laiterie in Laiteries)
@@ -23,10 +24,17 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         {
             List<GenericNode> lesSuccesseurs = new List<GenericNode>();
             Point pointNode = this.findPointNodeChemin();
-            foreach (Lien unLien in pointNode.List_Voisins)
+            if (Refill && this.GetNom().Length % 4 == 0 && GetNom().Length != 0 && this.GetID() != Laiteries[0].NomPoint)
             {
-                if (!this.GetNom().Contains(unLien.NomVoisin))
-                    lesSuccesseurs.Add(new NodeChemin(this.GetNom() + unLien.NomVoisin));
+                lesSuccesseurs.Add(new NodeChemin(this.GetNom() + Laiteries[0].NomPoint));
+            }
+            else 
+            { 
+                foreach (Lien unLien in pointNode.List_Voisins)
+                {
+                    if (!this.GetNom().Contains(unLien.NomVoisin))
+                        lesSuccesseurs.Add(new NodeChemin(this.GetNom() + unLien.NomVoisin));
+                }
             }
             return lesSuccesseurs;
         }
@@ -39,7 +47,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             {
                 //on cherche à quel point voisin le noeud node correspond
                 string debug_nodeID = node.GetID();
-                bool debug_trouverVoisin = pointNode.List_Voisins[0].NomVoisin == node.GetID();
                 Lien resultat = pointNode.List_Voisins.Find(voisin => voisin.NomVoisin == node.GetID());
                 if (resultat==null) throw new Exception("le point n\'a pas de voisin correspondant à ce nom");
                 if (resultat.Distance != 0)
@@ -71,14 +78,16 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         }
         public override void CalculeHCost()
         {
-            this.SetEstimation(this.GetArcCost(new NodeChemin(Laiteries[0].NomPoint)));
+            if (this.GetID()!=Laiteries[0].NomPoint)
+                this.SetEstimation(this.GetArcCost(new NodeChemin(Laiteries[0].NomPoint)));
+            else SetEstimation(0);
         }
         public NodeChemin(string nom)
             : base(nom)
         { }
         //trouve le chemin le plus court passant par les points du graphe contenus dans nomLaiteries. Modifie CheminLaiteries et Laiteries pour reconstruire un monde
-        //ne contenant plus que les laiteries.
-        public static string[] TrouveChemin(string[] nomLaiteries)
+        //ne contenant plus que les laiteries. refill détermine si le camion doit repasser par la première laiterie tous les 4 trajets.
+        public static string[] TrouveChemin(string[] nomLaiteries, bool refill = false)
         {
             //on refait un territoire avec uniquement les laiteries et les distances qui les séparent.
             Laiteries = new List<Point>();
@@ -100,10 +109,10 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                     }
                 }
                 Laiteries.Add(pointLaiterie);
-                //on calcule le chemin entre chacune des laiteries.
             }
 
             //on utilise la fonction AStar pour trouver le plus court chemin passant par toutes les laiteries
+            Refill = refill;
             Graph leGraph = new Graph();
             List<GenericNode> List_trajet = leGraph.RechercheSolutionAEtoile(new NodeChemin(nomLaiteries[0]), " ");
             string[] voyage = new string[2];
