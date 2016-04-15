@@ -200,7 +200,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 string[] result = NodeChemin.TrouveChemin(lettresDecoupes);
                 listBox2.BeginUpdate();
                 listBox2.Items.Add("  Question 3 : ");
-                listBox2.Items.Add("Distance entre " + lettresDecoupes[0] + " et " + lettresDecoupes.Last() + " = " + result[0]);
+                listBox2.Items.Add("Distance du trajet total : " + result[0]);
                 listBox2.Items.Add("Chemin : " + result[1]);
                 listBox2.Items.Add("Fin question 3");
                 listBox2.EndUpdate();

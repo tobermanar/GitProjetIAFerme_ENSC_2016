@@ -46,7 +46,22 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             
             return distance;
         }
+        public static string[] DistanceWoBC(string A, string B)
+        {
+            string[] distance = new string[2];
+            double distanceTempo = 0;
+            Graph leGraph = new Graph();
+            List<GenericNode> chemin = leGraph.RechercheSolutionAEtoile(new NodeL(A), B);
+            for (int i = 0; i < chemin.Count() - 1; i++)
+            {
+                distanceTempo = distanceTempo + chemin[i].GetArcCost(chemin[i + 1]);
+                distance[1] = distance[1]  + chemin[i].GetNom();
+            }
+            distance[0] = distanceTempo.ToString();
+            distance[1] = distance[1] + B;
 
+            return distance;
+        }
         public static Point findPointNode(GenericNode node)
         {
             Point pointNode;
