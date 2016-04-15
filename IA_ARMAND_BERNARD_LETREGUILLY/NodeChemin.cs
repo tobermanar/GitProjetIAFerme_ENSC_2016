@@ -112,7 +112,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 distanceTotale += trouveDistanceLaiteries(voyage[1][i].ToString(), voyage[1][i + 1].ToString());
             }
             voyage[0] = distanceTotale.ToString();
-            return voyage;
+            //on rajoute les étapes intermédiaires entre chacune des laiteries
+            return completeVoyage(voyage);
         }
         public static double trouveDistanceLaiteries(string A, string B)
         {
