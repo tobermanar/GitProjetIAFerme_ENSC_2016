@@ -38,8 +38,10 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             if (pointNode != null)
             {
                 //on cherche à quel point voisin le noeud node correspond
+                string debug_nodeID = node.GetID();
+                bool debug_trouverVoisin = pointNode.List_Voisins[0].NomVoisin == node.GetID();
                 Lien resultat = pointNode.List_Voisins.Find(voisin => voisin.NomVoisin == node.GetID());
-                if (resultat.Equals(null)) throw new Exception("le point n\'a pas de voisin correspondant à ce nom");
+                if (resultat==null) throw new Exception("le point n\'a pas de voisin correspondant à ce nom");
                 if (resultat.Distance != 0)
                 {
                     return resultat.Distance;
@@ -63,7 +65,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         }
         public Point findPointNodeChemin()
         {
-            Point pointNode = Monde.List_Points.Find(point => this.GetID() == point.NomPoint); ;
+            Point pointNode = NodeChemin.Laiteries.Find(point => this.GetID() == point.NomPoint); ;
             if (!pointNode.Equals(null)) return pointNode;
             else throw new Exception("il n'y a pas de point correspondant à ce nom");
         }
@@ -78,6 +80,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         //ne contenant plus que les laiteries.
         public static string[] TrouveChemin(string[] nomLaiteries)
         {
+            //on refait un territoire avec uniquement les laiteries et les distances qui les séparent.
             Laiteries = new List<Point>();
             cheminsLaiteries = new List<string>();
             foreach (string laLaiterie in nomLaiteries)
@@ -85,12 +88,11 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 Point pointLaiterie = new Point(laLaiterie, new List<Lien>());
                 foreach (string uneLaiterieVoine in nomLaiteries)
                 {
-                    string[] distance;
                     //on calcule le chemin le plus court entre chaque laiterie. Peut être optimisé en ne recalculant pas dans les deux sens à chaque fois
                     // ie : dans le cas présent, on calcule par exemple le chemin de A vers H, puis on recalcule celui de H vers A.
                     if (laLaiterie != uneLaiterieVoine)
                     {
-                        distance = Monde.Distance(uneLaiterieVoine, laLaiterie);
+                        string[] distance = Monde.Distance(uneLaiterieVoine, laLaiterie);
                         pointLaiterie.List_Voisins.Add(new Lien(uneLaiterieVoine, Convert.ToInt32(distance[0])));
                         cheminsLaiteries.Add(distance[1]);
                     }
@@ -98,6 +100,8 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                 Laiteries.Add(pointLaiterie);
                 //on calcule le chemin entre chacune des laiteries.
             }
+
+            //on utilise la fonction AStar pour trouver le plus court chemin passant par toutes les laiteries
             Graph leGraph = new Graph();
             List<GenericNode> List_trajet = leGraph.RechercheSolutionAEtoile(new NodeChemin(nomLaiteries[0]), " ");
             string[] voyage = new string[2];
@@ -116,6 +120,36 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             Lien laiterieArrivee = laiterieDepart.List_Voisins.Find(lienLaiterie => lienLaiterie.NomVoisin == B);
             return laiterieArrivee.Distance;
         }
+        public static string[] PlusCourtChemin(string A, string B)
+        {
+            string[] distance = new string[2];
+            double distanceTempo = 0;
+            Graph leGraph = new Graph();
+            List<GenericNode> chemin = leGraph.RechercheSolutionAEtoile(new NodeChemin(A), B);
+            for (int i = 0; i < chemin.Count() - 1; i++)
+            {
+                distanceTempo = distanceTempo + chemin[i].GetArcCost(chemin[i + 1]);
+                distance[1] = distance[1] + ", " + chemin[i].GetNom();
+            }
+            distance[0] = distanceTempo.ToString();
+            distance[1] = distance[1] + " " + B;
 
+            return distance;
+        }
+        public static string[] completeVoyage(string[] laiteriesVisitees)
+        {
+            string cheminIntermediaire;
+            string resultat = "";
+            for(int i=0; i<laiteriesVisitees.Length-1;i++)
+            {
+                resultat += laiteriesVisitees[i];
+                cheminIntermediaire = NodeChemin.cheminsLaiteries.Find(chemin => (chemin.First().ToString() == laiteriesVisitees[i] && chemin.Last().ToString() == laiteriesVisitees[i + 1]));
+                cheminIntermediaire = cheminIntermediaire.Remove(cheminIntermediaire.Length-1,1);
+                cheminIntermediaire = cheminIntermediaire.Remove(0,1);
+                resultat += cheminIntermediaire.ToLower();
+            }
+            resultat += laiteriesVisitees.Last();
+            return new [] {resultat};
+        }
     }
 }

@@ -11,3 +11,6 @@
 *.suo
 *.suo
 *.pdb
+*.cache
+IA_ARMAND_BERNARD_LETREGUILLY/obj/x86/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+*.exe
