@@ -14,6 +14,9 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         [STAThread]
         static void Main()
         {
+            char[] charIndesirables = { ',', ' ' };
+            string test = "A B, e H G, c A";
+            string testTrime = test.Trim(charIndesirables);
             //Graph leGraph = new Graph();
             //List<GenericNode> truc = leGraph.RechercheSolutionAEtoile(new NodeL("A"), "L");
             Application.EnableVisualStyles();

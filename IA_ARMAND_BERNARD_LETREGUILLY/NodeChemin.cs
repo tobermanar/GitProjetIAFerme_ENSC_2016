@@ -83,6 +83,7 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             //on refait un territoire avec uniquement les laiteries et les distances qui les séparent.
             Laiteries = new List<Point>();
             cheminsLaiteries = new List<string>();
+            char[] charIndesirables = { ',', ' ' };
             foreach (string laLaiterie in nomLaiteries)
             {
                 Point pointLaiterie = new Point(laLaiterie, new List<Lien>());
@@ -92,9 +93,10 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
                     // ie : dans le cas présent, on calcule par exemple le chemin de A vers H, puis on recalcule celui de H vers A.
                     if (laLaiterie != uneLaiterieVoine)
                     {
-                        string[] distance = Monde.Distance(uneLaiterieVoine, laLaiterie);
+                        string[] distance = Monde.DistanceWoBC(uneLaiterieVoine, laLaiterie);
+                        //distance 0 contient la mesure du chemin parcouru, distance 1 contient le chemin.
                         pointLaiterie.List_Voisins.Add(new Lien(uneLaiterieVoine, Convert.ToInt32(distance[0])));
-                        cheminsLaiteries.Add(distance[1]);
+                        cheminsLaiteries.Add(distance[1].Trim(charIndesirables));
                     }
                 }
                 Laiteries.Add(pointLaiterie);
@@ -106,18 +108,20 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
             List<GenericNode> List_trajet = leGraph.RechercheSolutionAEtoile(new NodeChemin(nomLaiteries[0]), " ");
             string[] voyage = new string[2];
             double distanceTotale = 0;
-            voyage[1] = List_trajet[List_trajet.Count() - 1].GetNom() + nomLaiteries[0];
+            string voyageLaiteries = List_trajet[List_trajet.Count() - 1].GetNom() + nomLaiteries[0];
+            voyage[1] = completeVoyage(voyageLaiteries).Trim(charIndesirables);
             for (int i = 0; i < voyage[1].Length - 1; i++)
             {
                 distanceTotale += trouveDistanceLaiteries(voyage[1][i].ToString(), voyage[1][i + 1].ToString());
             }
             voyage[0] = distanceTotale.ToString();
             //on rajoute les étapes intermédiaires entre chacune des laiteries
-            return completeVoyage(voyage);
+            return voyage;
         }
+        /* renvoie la distance entre deux laiteries */
         public static double trouveDistanceLaiteries(string A, string B)
         {
-            Point laiterieDepart = Laiteries.Find(laiterie => laiterie.NomPoint == A);
+            Point laiterieDepart = Monde.List_Points.Find(laiterie => laiterie.NomPoint == A);
             Lien laiterieArrivee = laiterieDepart.List_Voisins.Find(lienLaiterie => lienLaiterie.NomVoisin == B);
             return laiterieArrivee.Distance;
         }
@@ -137,20 +141,22 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
 
             return distance;
         }
-        public static string[] completeVoyage(string[] laiteriesVisitees)
+        public static string completeVoyage(string laiteriesVisitees)
         {
             string cheminIntermediaire;
             string resultat = "";
+            char[] charIndesirables = { ',', ' ' };
             for(int i=0; i<laiteriesVisitees.Length-1;i++)
             {
                 resultat += laiteriesVisitees[i];
-                cheminIntermediaire = NodeChemin.cheminsLaiteries.Find(chemin => (chemin.First().ToString() == laiteriesVisitees[i] && chemin.Last().ToString() == laiteriesVisitees[i + 1]));
+                List<string> debug_cheminLaiterie = NodeChemin.cheminsLaiteries;
+                cheminIntermediaire = NodeChemin.cheminsLaiteries.Find(chemin => (chemin.First() == laiteriesVisitees[i] && chemin.Last() == laiteriesVisitees[i + 1]));
                 cheminIntermediaire = cheminIntermediaire.Remove(cheminIntermediaire.Length-1,1);
                 cheminIntermediaire = cheminIntermediaire.Remove(0,1);
-                resultat += cheminIntermediaire.ToLower();
+                resultat += cheminIntermediaire;
             }
             resultat += laiteriesVisitees.Last();
-            return new [] {resultat};
+            return resultat.Trim(charIndesirables);
         }
     }
 }

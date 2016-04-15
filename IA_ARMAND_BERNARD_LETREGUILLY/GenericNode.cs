@@ -47,8 +47,6 @@ namespace IA_ARMAND_BERNARD_LETREGUILLY
         {
             HCost = h;
         }
-
-
         public double Cout_Total
         {
             get { return TotalCost; }
